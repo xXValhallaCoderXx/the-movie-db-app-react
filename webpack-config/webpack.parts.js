@@ -66,22 +66,13 @@ exports.minifyCSS = ({options}) => ({
     - Functions below provide extra utilities for either enviroment
 ********************/
 
-exports.setFreeVariable = (key, value) => {
-  // Sets a global variable which can be accessed throughout the app
-  const env = {};
-  env[key] = JSON.stringify(value);
-  return {
-    plugins: [new webpack.DefinePlugin(env)]
-  };
-};
-
 exports.setFreeVariables = data => {
   const env = {};
   Object.keys(data).forEach(function(key) {
-    env[key] = JSON.stringify(data[key]);
+    env[key] = data[key];
   });
   return {
-    plugins: [new webpack.DefinePlugin(env)]
+    plugins: [new webpack.EnvironmentPlugin(env)]
   };
 };
 
