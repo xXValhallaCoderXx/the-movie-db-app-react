@@ -13,7 +13,9 @@
     "pm2:kill": "pm2 kill",
     "start:local": "node server.js",
     "start": "node server.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -23,7 +25,10 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.3",
     "@types/history": "^4.7.2",
+    "@types/jest": "^24.0.23",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",
@@ -37,6 +42,8 @@
     "fork-ts-checker-webpack-plugin": "^1.3.1",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^2.2.0",
+    "jest": "^24.9.0",
+    "jest-dom": "^4.0.0",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -45,9 +52,11 @@
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.17.0",
     "react-hot-loader": "^4.8.4",
+    "react-testing-library": "^8.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
@@ -64,8 +73,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^5.0.0"
   },
   "husky": {
