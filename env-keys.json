@@ -1,10 +1,8 @@
 {
   "production": {
-    "ENV_VAR": "PROD",
-    "TEST": "PROD2"
+    "API_KEY": "1f4b653c77653b672a601004bfe67922"
   },
   "development": {
-    "ENV_VAR": "DEV",
-    "TEST": "DEV2"
+    "API_KEY": "1f4b653c77653b672a601004bfe67922"
   }
 }
