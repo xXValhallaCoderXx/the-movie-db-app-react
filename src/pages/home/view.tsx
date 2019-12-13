@@ -1,14 +1,14 @@
 import React from "react";
+import {SearchBar} from "./components";
 import {DataTable} from "shared/components";
 const styles = require("./home.module.scss");
 
 interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
-  value: string;
 }
 
-const HomePageView = ({onSubmit, onChange, value}: IProps) => {
+const HomePageView = ({onSubmit, onChange}: IProps) => {
   return (
     <div className={styles.home_view_wrapper}>
       <div className={styles.row}>
@@ -18,7 +18,7 @@ const HomePageView = ({onSubmit, onChange, value}: IProps) => {
               <div className={styles.column}>Search</div>
               <div className={styles.column}>
                 <form onSubmit={onSubmit}>
-                  <input value={value} onChange={onChange} />
+                  <SearchBar onSearchChange={onChange} />
                 </form>
               </div>
             </div>
