@@ -1,24 +1,31 @@
-import React, {ReactNode, Dispatch} from "react";
+import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
-import {homeReducer, isOnChangeAction} from "./home-reducer";
+import {homeReducer, IState} from "./home-reducer";
 import HomeView from "./view";
 
 interface IProps {
   children: ReactNode;
 }
 
+const initialState: IState = {
+  results: "",
+  movies: {
+    page: 0,
+    totalPages: 0,
+    totalResults: 0,
+    results: []
+  }
+};
+
 const HomePageContainer = ({children}: IProps) => {
-  const initialState = {
-    value: ""
-  };
-  // const [state, actions] = React.useReducer(homeReducer, initialState);
+  const [state, dispatch] = React.useReducer(homeReducer, initialState);
   const movieApiCall = (name: string) =>
     Fetch.searchMovie(name)
       .then(res => {
-        console.log("RESPONSE: ", res);
+        dispatch({type: "RESULTS_RECIEVE", payload: res});
       })
       .catch(err => {
-        console.log("RERRO: ", err);
+        dispatch({type: "RESULTS_ERROR", payload: err});
       });
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
@@ -26,6 +33,7 @@ const HomePageContainer = ({children}: IProps) => {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
   }
+  console.log("STATE: ", state);
   return <HomeView onSubmit={onSubmit} onChange={debounceOnChange} />;
 };
 
