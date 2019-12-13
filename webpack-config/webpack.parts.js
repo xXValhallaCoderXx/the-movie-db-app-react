@@ -1,12 +1,14 @@
 const webpack = require("webpack");
 const path = require("path");
+const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const cssnano = require("cssnano");
+const PATHS = require("./paths");
 
 /********************
  * DEVELOPMENT CONFIGS
@@ -147,7 +149,18 @@ exports.developmentCSS = () => ({
     rules: [
       {
         test: /^((?!\.module).)*scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("tailwindcss"), require("autoprefixer")]
+            }
+          }
+        ]
       },
       {
         test: /\.module.scss$/,
@@ -177,6 +190,9 @@ exports.extractCSS = () => {
     plugins: [
       new MiniCssExtractPlugin({
         filename: "static/styles/[name].[hash:8].css"
+      }),
+      new PurgecssPlugin({
+        paths: glob.sync(`${PATHS.app}/*`, {nodir: true})
       })
     ],
     module: {
@@ -199,7 +215,13 @@ exports.extractCSS = () => {
             {
               loader: "sass-loader"
             },
-            autoprefix()
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: "postcss",
+                plugins: [require("tailwindcss"), require("autoprefixer")]
+              }
+            }
           ]
         },
         {
@@ -234,3 +256,4 @@ autoprefix = () => ({
     plugins: () => [require("autoprefixer")()]
   }
 });
+
