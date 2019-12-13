@@ -1,3 +1,7 @@
+export interface IState {
+  value: string;
+}
+
 export interface IAction {
   type: string;
 }
@@ -18,13 +22,15 @@ function isOnChangeAction(action: IAction): action is IOnChange {
   return action.type === "ON_CHANGE";
 }
 
-const homeReducer = (state: any, action: IAction) => {
+const homeReducer = (state: IState, action: IAction) => {
   if (isOnChangeAction(action)) {
     return {
       ...state,
       value: action.payload
     };
+  } else {
+    return state;
   }
 };
 
-export {homeReducer};
+export {homeReducer, isOnChangeAction};

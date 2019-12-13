@@ -1,4 +1,5 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, Dispatch} from "react";
+import {homeReducer, isOnChangeAction} from "./home-reducer";
 import HomeView from "./view";
 // import {Fetch} from "shared/utils";
 // const styles = require("./home.module.scss");
@@ -8,7 +9,18 @@ interface IProps {
 }
 
 const HomePageContainer = ({children}: IProps) => {
-  const [showMessage, setShowMessage] = React.useState(false);
+  const initialState = {
+    value: ""
+  };
+  const [state, actions] = React.useReducer(homeReducer, initialState);
+  console.log("STATE: ", state);
+  console.log("ACTIONS: ", actions);
+  function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
+  }
+  function onChange(event: React.FormEvent) {
+    actions(isOnChangeAction(""));
+  }
   // return (
   //   <div>
   //     <input
@@ -21,7 +33,7 @@ const HomePageContainer = ({children}: IProps) => {
   //     {showMessage ? children : null}
   //   </div>
   // );
-  return <HomeView />;
+  return <HomeView onSubmit={onSubmit} onChange={onChange} value="" />;
 };
 
 export default HomePageContainer;

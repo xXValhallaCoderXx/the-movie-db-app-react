@@ -3,8 +3,8 @@ import {DataTable} from "shared/components";
 const styles = require("./home.module.scss");
 
 interface IProps {
-  onSubmit: () => void;
-  onChange: (event: any) => void;
+  onSubmit: (event: React.FormEvent) => void;
+  onChange: (event: React.FormEvent) => void;
   value: string;
 }
 
