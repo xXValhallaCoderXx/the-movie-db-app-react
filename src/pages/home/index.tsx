@@ -1,6 +1,6 @@
 import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
-import {homeReducer, IState} from "./home-reducer";
+import {homeReducer, IState, IMovieResponse} from "./home-reducer";
 import HomeView from "./view";
 
 interface IProps {
@@ -21,7 +21,7 @@ const HomePageContainer = ({children}: IProps) => {
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
   const movieApiCall = (name: string) =>
     Fetch.searchMovie(name)
-      .then(res => {
+      .then((res: IMovieResponse) => {
         dispatch({type: "RESULTS_RECIEVE", payload: res});
       })
       .catch(err => {
@@ -33,8 +33,13 @@ const HomePageContainer = ({children}: IProps) => {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
   }
-  console.log("STATE: ", state);
-  return <HomeView onSubmit={onSubmit} onChange={debounceOnChange} />;
+  return (
+    <HomeView
+      results={state.movies}
+      onSubmit={onSubmit}
+      onChange={debounceOnChange}
+    />
+  );
 };
 
 export default HomePageContainer;

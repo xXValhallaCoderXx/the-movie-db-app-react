@@ -3,7 +3,7 @@ export interface IState {
   movies: IMovieResponse;
 }
 
-interface IMovieResponse {
+export interface IMovieResponse {
   page: number;
   results: any;
   totalPages: number;
@@ -50,7 +50,7 @@ const homeReducer = (state: IState, action: Action) => {
     case "RESULTS_RECIEVE":
       return {
         ...state,
-        results: action.payload
+        movies: action.payload
       };
     default:
       return state;
