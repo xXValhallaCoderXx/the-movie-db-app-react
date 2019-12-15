@@ -1,6 +1,6 @@
 import React from "react";
 import {IMovieDetail} from "shared/types";
-
+import {Genres} from "pages/home/components";
 interface IProps {
   selectedMovie: IMovieDetail;
 }
@@ -24,6 +24,9 @@ const MovieDetail = ({selectedMovie}: IProps) => {
           </a>
         </div>
         <div className="w-4/5 pl-5">
+          <div className="flex space-between mb-5">
+            <Genres genres={selectedMovie.genres} />
+          </div>
           <h3 className="text-2xl font-bold -mt-2">Overview</h3>
           <p>{overview}</p>
           <p>

@@ -140,7 +140,7 @@ const HomePageContainer = (props: IProps) => {
       );
     }
   }
-  console.log("LOADING: ", loading);
+  console.log("STATE: ", state);
   return <Layout mobile={view === "mobile"}>{renderView()}</Layout>;
 };
 

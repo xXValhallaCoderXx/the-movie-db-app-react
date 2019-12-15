@@ -23,6 +23,18 @@ const FetchWrapper = {
       .then(httpStatus)
       .then(parseJson);
   },
+  getReviews: (id: string) => {
+    const reviewsUrl = `https://api.themoviedb.org/3/movie/${id}/reviews?&api_key=${API_KEY}`;
+    return fetch(reviewsUrl)
+      .then(httpStatus)
+      .then(parseJson);
+  },
+  getCredits: (id: string) => {
+    const creditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?&api_key=${API_KEY}`;
+    return fetch(creditsUrl)
+      .then(httpStatus)
+      .then(parseJson);
+  },
   getMovie: (id: string): Promise<any> => {
     const {API_KEY} = process.env;
     const url = `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`;
