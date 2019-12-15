@@ -1,4 +1,5 @@
 import React from "react";
+import {Input} from "shared/components";
 
 interface IProps {
   onSearchChange: any;
@@ -11,7 +12,7 @@ const SearchBar = ({onSearchChange}: IProps) => {
     onSearchChange(e.currentTarget.value);
   }
   return (
-    <input
+    <Input
       value={value}
       placeholder="Enter movie title..."
       onChange={onChange}

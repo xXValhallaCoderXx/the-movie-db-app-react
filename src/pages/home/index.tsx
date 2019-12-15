@@ -33,11 +33,22 @@ const HomePageContainer = ({children}: IProps) => {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
   }
+
+  const getMovieByID = (id: string) => {
+    Fetch.getMovie(id)
+      .then((res: any) => {
+        console.log("RES: ", res);
+      })
+      .catch(err => {
+        console.log("ERROR: ", err);
+      });
+  };
   return (
     <HomeView
       results={state.movies}
       onSubmit={onSubmit}
       onChange={debounceOnChange}
+      onRowClick={getMovieByID}
     />
   );
 };

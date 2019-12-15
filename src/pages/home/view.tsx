@@ -1,17 +1,35 @@
 import React from "react";
 import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
-import {DataTable} from "shared/components";
+import {DataTable, Layout} from "shared/components";
 const styles = require("./home.module.scss");
 
 interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
+  onRowClick: (id: string) => void;
   results: IMovieResponse;
 }
 
-const HomePageView = ({onSubmit, onChange, results}: IProps) => {
+const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
+  console.log("RESULTS: ", results);
   const data = [
+    {
+      Name: "Anssadsadasdadasam",
+      Age: "20"
+    },
+    {
+      Name: "REN",
+      Age: "33"
+    },
+    {
+      Name: "Anssadsadasdadasam",
+      Age: "20"
+    },
+    {
+      Name: "REN",
+      Age: "33"
+    },
     {
       Name: "Anssadsadasdadasam",
       Age: "20"
@@ -21,29 +39,30 @@ const HomePageView = ({onSubmit, onChange, results}: IProps) => {
       Age: "33"
     }
   ];
+
+  function handleRowClick(row: any) {
+    onRowClick("299536");
+  }
   return (
-    <div className={styles.home_view_wrapper}>
-      <div className={styles.row}>
-        <div className={styles.column}>
-          <div className={styles.search_wrapper}>
-            <div className={styles.row}>
-              <div className={`${styles.column}`}>Search</div>
-              <div className={styles.column}>
-                <form onSubmit={onSubmit}>
-                  <SearchBar onSearchChange={onChange} />
-                </form>
-              </div>
-            </div>
-            <div className="mt-10">
-              <DataTable type="auto" data={data} />
-            </div>
+    <Layout>
+      <h1 className="text-center text-2xl mt-5 mb-5">
+        The Movie DB Application
+      </h1>
+      <div className="flex">
+        <div className="w-1/2 p-10">
+          <div className="flex items-center">
+            <div className="mr-5 text-xl">Search</div>
+            <form onSubmit={onSubmit} className="flex-grow">
+              <SearchBar onSearchChange={onChange} />
+            </form>
           </div>
+          <section id="table-wrapper" className="mt-5">
+            <DataTable onRowClick={handleRowClick} type="auto" data={data} />
+          </section>
         </div>
-        <div className={styles.column}>
-          <div className={styles.detail_wrapper}>Details</div>
-        </div>
+        <div className="w-1/2 p-10">Hi</div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

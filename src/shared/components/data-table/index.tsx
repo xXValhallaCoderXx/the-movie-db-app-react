@@ -15,6 +15,15 @@ interface IProps {
   type?: "fixed" | "auto";
   data: any;
   headers?: string[];
+  onRowClick?: (data: any) => void;
+}
+
+function greyRow(index: number) {
+  let greyRowClass = "";
+  if (index % 2 === 0) {
+    greyRowClass = "bg-gray-100";
+  }
+  return greyRowClass;
 }
 
 const DataTable = (props: IProps) => {
@@ -25,6 +34,10 @@ const DataTable = (props: IProps) => {
   ]
     .filter(Boolean)
     .join(" ");
+
+  const handleRowClick = (data: any) => () => {
+    props.onRowClick && props.onRowClick(data);
+  };
 
   function renderHeaders() {
     let x;
@@ -40,33 +53,33 @@ const DataTable = (props: IProps) => {
       </th>
     ));
   }
+
   function renderBody() {
     return props.data.map((el: string, index: number) => (
-      <tr key={index}>
+      <tr
+        className="hover:bg-black"
+        onClick={handleRowClick(el)}
+        key={index * 0.1}>
         {Object.values(el).map(value => (
-          <td key={index}>{value}</td>
+          <td
+            className={`border px-4 py-2 cursor-pointer ${greyRow(
+              index * 0.1
+            )}`}
+            key={index * 0.2}>
+            {value}
+          </td>
         ))}
       </tr>
     ));
   }
   return (
     <table className={componentClassName} {...props}>
-      <thead>{renderHeaders()}</thead>
+      <thead>
+        <tr>{renderHeaders()}</tr>
+      </thead>
       <tbody>{renderBody()}</tbody>
     </table>
   );
-};
-
-DataTable.TH = function TH(props: any) {
-  return <th {...props} />;
-};
-
-DataTable.TR = function TR(props: any) {
-  return <tr {...props} />;
-};
-
-DataTable.TD = function TD(props: any) {
-  return <td {...props} />;
 };
 
 export default DataTable;
