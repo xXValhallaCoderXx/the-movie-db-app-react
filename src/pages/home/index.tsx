@@ -5,7 +5,6 @@ import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
 import {homeReducer, IState, IMovieResponse} from "./home-reducer";
-import HomeView from "./view";
 
 interface ILocalProps {
   children: ReactNode;
