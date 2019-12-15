@@ -1,15 +1,9 @@
 import React from "react";
-import {IMovieResponse} from "pages/home/home-reducer";
 
 interface IColumn {
   id: string;
   label: string;
 }
-
-// interface IProps {
-//   results: IMovieResponse;
-//   columns: IColumn[];
-// }
 
 interface IProps {
   type?: "fixed" | "auto";
@@ -20,10 +14,10 @@ interface IProps {
 }
 
 function greyRow(index: number) {
-  let greyRowClass = "";
-  if (index % 2 === 0) {
-    greyRowClass = "bg-gray-100";
-  }
+  const greyRowClass = "";
+  // if (index % 2 === 0) {
+  //   greyRowClass = "bg-gray-100";
+  // }
   return greyRowClass;
 }
 
