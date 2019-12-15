@@ -1,5 +1,5 @@
 import React from "react";
-import {useHistory, useParams, Link} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 
 interface IProps {
   mobile?: boolean;
@@ -10,7 +10,6 @@ interface IRouteParams {
 }
 
 const NavBar = ({mobile}: IProps) => {
-  const history = useHistory();
   const params = useParams<IRouteParams>();
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-3">
