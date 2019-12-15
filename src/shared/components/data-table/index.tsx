@@ -66,7 +66,6 @@ const DataTable = (props: IProps) => {
   function renderBody() {
     // @ts-ignore
     return paginatedResults[page].map((el: string, index: number) => {
-      console.log("EL: ", el);
       return (
         <tr
           // className="hover:bg-black hover:opacity-25"
