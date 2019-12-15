@@ -1,6 +1,7 @@
 export interface IState {
   results: any;
   movies: IMovieResponse;
+  movieDetails: any;
 }
 
 export interface IMovieResponse {
@@ -33,7 +34,10 @@ export interface IMovieResponse {
 type Action =
   | {type: "RESULTS_FETCH"}
   | {type: "RESULTS_ERROR"; payload: any}
-  | {type: "RESULTS_RECIEVE"; payload: IMovieResponse};
+  | {type: "RESULTS_RECIEVE"; payload: IMovieResponse}
+  | {type: "MOVIE_FETCH"}
+  | {type: "MOVIE_ERROR"; payload: any}
+  | {type: "MOVIE_RECIEVE"; payload: any};
 
 const homeReducer = (state: IState, action: Action) => {
   switch (action.type) {
@@ -51,6 +55,22 @@ const homeReducer = (state: IState, action: Action) => {
       return {
         ...state,
         movies: action.payload
+      };
+    case "MOVIE_FETCH":
+      return {
+        ...state
+      };
+    case "MOVIE_ERROR":
+      return {
+        ...state
+      };
+    case "MOVIE_RECIEVE":
+      return {
+        ...state,
+        movieDetails: {
+          ...state.movieDetails,
+          [action.payload.id]: action.payload
+        }
       };
     default:
       return state;

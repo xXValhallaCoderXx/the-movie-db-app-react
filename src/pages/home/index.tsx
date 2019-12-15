@@ -14,7 +14,8 @@ const initialState: IState = {
     totalPages: 0,
     totalResults: 0,
     results: []
-  }
+  },
+  movieDetails: {}
 };
 
 const HomePageContainer = ({children}: IProps) => {
@@ -35,14 +36,17 @@ const HomePageContainer = ({children}: IProps) => {
   }
 
   const getMovieByID = (id: string) => {
-    Fetch.getMovie(id)
-      .then((res: any) => {
-        console.log("RES: ", res);
-      })
-      .catch(err => {
-        console.log("ERROR: ", err);
-      });
+    if (!state.movieDetails[id]) {
+      Fetch.getMovie(id)
+        .then((res: any) => {
+          dispatch({type: "MOVIE_RECIEVE", payload: res});
+        })
+        .catch(err => {
+          dispatch({type: "MOVIE_ERROR", payload: err});
+        });
+    }
   };
+  console.log("STATE:", state);
   return (
     <HomeView
       results={state.movies}

@@ -15,26 +15,32 @@ const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
   console.log("RESULTS: ", results);
   const data = [
     {
+      ID: "299536",
       Name: "Anssadsadasdadasam",
       Age: "20"
     },
     {
+      ID: "299536",
       Name: "REN",
       Age: "33"
     },
     {
+      ID: "299536",
       Name: "Anssadsadasdadasam",
       Age: "20"
     },
     {
+      ID: "299536",
       Name: "REN",
       Age: "33"
     },
     {
+      ID: "299536",
       Name: "Anssadsadasdadasam",
       Age: "20"
     },
     {
+      ID: "299536",
       Name: "REN",
       Age: "33"
     }
