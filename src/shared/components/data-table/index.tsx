@@ -37,6 +37,7 @@ const DataTable = (props: IProps) => {
     .join(" ");
 
   const handleRowClick = (data: any) => () => {
+    console.log("ID : ", data);
     props.onRowClick && props.onRowClick(data);
   };
 

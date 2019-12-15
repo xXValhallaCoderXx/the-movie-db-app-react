@@ -1,11 +1,15 @@
 import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {homeReducer, IState, IMovieResponse} from "./home-reducer";
 import HomeView from "./view";
 
 interface ILocalProps {
   children: ReactNode;
+}
+
+interface IRouteParams {
+  movieID: string;
 }
 
 type IProps = ILocalProps;
@@ -18,10 +22,12 @@ const initialState: IState = {
     totalResults: 0,
     results: []
   },
-  movieDetails: {}
+  movieDetails: {},
+  selectedMovie: ""
 };
 
 const HomePageContainer = (props: IProps) => {
+  const params = useParams<IRouteParams>();
   const history = useHistory();
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
   const movieApiCall = (name: string) => {
@@ -45,17 +51,25 @@ const HomePageContainer = (props: IProps) => {
       Fetch.getMovie(id)
         .then((res: any) => {
           dispatch({type: "MOVIE_RECIEVE", payload: res});
-          history.push(`/${id}`)
+          history.push(`/${id}`);
         })
         .catch(err => {
           dispatch({type: "MOVIE_ERROR", payload: err});
         });
-    }else {
-      history.push(`/${id}`)
+    } else {
+      history.push(`/${id}`);
+    }
+  };
+  const handleSelectedMovie = () => {
+    if (state.movieDetails[params.movieID]) {
+      return state.movieDetails[params.movieID];
+    } else {
+      return null;
     }
   };
   return (
     <HomeView
+      selectedMovie={handleSelectedMovie()}
       results={state.movies}
       onSubmit={onSubmit}
       onChange={debounceOnChange}

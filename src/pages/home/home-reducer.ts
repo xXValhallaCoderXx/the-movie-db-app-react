@@ -1,6 +1,7 @@
 export interface IState {
   movies: IMovieResponse;
   movieDetails: any;
+  selectedMovie: string;
 }
 
 export interface IMovieResponse {
@@ -17,7 +18,8 @@ type Action =
   | {type: "RESULTS_RECIEVE"; payload: IMovieResponse}
   | {type: "MOVIE_FETCH"}
   | {type: "MOVIE_ERROR"; payload: any}
-  | {type: "MOVIE_RECIEVE"; payload: any};
+  | {type: "MOVIE_RECIEVE"; payload: any}
+  | {type: "SELECT_MOVIE"; payload: string};
 
 const homeReducer = (state: IState, action: Action) => {
   switch (action.type) {

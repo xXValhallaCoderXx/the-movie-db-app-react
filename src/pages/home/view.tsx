@@ -1,6 +1,7 @@
 import React from "react";
 import {IMovieResponse} from "./home-reducer";
-import {SearchBar, MovieDetail} from "./components";
+import {SearchBar} from "./components";
+import MovieDetail from "./movie-detail";
 import {DataTable, Layout} from "shared/components";
 import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
@@ -10,45 +11,13 @@ interface IProps {
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
   results: IMovieResponse;
+  selectedMovie: any;
 }
 
-const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
-  console.log("RESULTS: ", results);
-  const data = [
-    {
-      ID: "299536",
-      Name: "Anssadsadasdadasam",
-      Age: "20"
-    },
-    {
-      ID: "299536",
-      Name: "REN",
-      Age: "33"
-    },
-    {
-      ID: "299536",
-      Name: "Anssadsadasdadasam",
-      Age: "20"
-    },
-    {
-      ID: "299536",
-      Name: "REN",
-      Age: "33"
-    },
-    {
-      ID: "299536",
-      Name: "Anssadsadasdadasam",
-      Age: "20"
-    },
-    {
-      ID: "299536",
-      Name: "REN",
-      Age: "33"
-    }
-  ];
-
+const HomePageView = (props: IProps) => {
+  const {onSubmit, onChange, results, onRowClick, selectedMovie} = props;
   function handleRowClick(row: any) {
-    onRowClick("299536");
+    onRowClick(row.id);
   }
 
   function renderDataTable() {
@@ -84,7 +53,7 @@ const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
           </section>
         </div>
         <div className="w-1/2 p-10">
-          <MovieDetail />
+          <MovieDetail selectedMovie={selectedMovie} />
         </div>
       </div>
     </Layout>
