@@ -5,7 +5,7 @@ import {Layout} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
-import {homeReducer, IState, IMovieResponse} from "./home-reducer";
+import {homeReducer, IState} from "./home-reducer";
 
 interface ILocalProps {
   children: ReactNode;
@@ -18,13 +18,7 @@ interface IRouteParams {
 type IProps = ILocalProps;
 
 const initialState: IState = {
-  movies: {
-    loading: false,
-    page: 0,
-    totalPages: 0,
-    totalResults: 0,
-    results: []
-  },
+  movies: [],
   movieDetails: {},
   selectedMovie: ""
 };

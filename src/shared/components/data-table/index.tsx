@@ -1,9 +1,6 @@
 import React from "react";
-
-interface IColumn {
-  id: string;
-  label: string;
-}
+import {parseMoviePages} from "shared/utils";
+import Pagination from "./pagination";
 
 interface IProps {
   type?: "fixed" | "auto";
@@ -22,6 +19,11 @@ function greyRow(index: number) {
 }
 
 const DataTable = (props: IProps) => {
+  const [page, setPage] = React.useState(0);
+  const [paginatedResults, setPaginatedResults] = React.useState([[]]);
+  React.useEffect(() => {
+    setPaginatedResults(parseMoviePages(props.data));
+  }, []);
   const componentClassName = [
     "some-base-class",
     props.type === "fixed" && "table-fixed",
@@ -31,7 +33,6 @@ const DataTable = (props: IProps) => {
     .join(" ");
 
   const handleRowClick = (data: any) => () => {
-    console.log("ID : ", data);
     props.onRowClick && props.onRowClick(data);
   };
 
@@ -51,7 +52,8 @@ const DataTable = (props: IProps) => {
   }
 
   function renderBody() {
-    return props.data.map((el: string, index: number) => (
+    // @ts-ignore
+    return paginatedResults[page].map((el: string, index: number) => (
       <tr
         className="hover:bg-black"
         onClick={handleRowClick(el)}
@@ -68,13 +70,20 @@ const DataTable = (props: IProps) => {
       </tr>
     ));
   }
+  function goToPage(e: any) {
+    setPage(e.target.value);
+  }
+
   return (
-    <table className={componentClassName} {...props}>
-      <thead>
-        <tr>{renderHeaders()}</tr>
-      </thead>
-      <tbody>{renderBody()}</tbody>
-    </table>
+    <div>
+      <table className={componentClassName} {...props}>
+        <thead>
+          <tr>{renderHeaders()}</tr>
+        </thead>
+        <tbody>{renderBody()}</tbody>
+      </table>
+      <Pagination pages={paginatedResults} goTo={goToPage} />
+    </div>
   );
 };
 
