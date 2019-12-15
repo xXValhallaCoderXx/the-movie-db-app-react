@@ -1,5 +1,4 @@
 export interface IState {
-  results: any;
   movies: IMovieResponse;
   movieDetails: any;
 }
@@ -10,26 +9,6 @@ export interface IMovieResponse {
   totalPages: number;
   totalResults: number;
 }
-
-// export interface IAction {
-//   type: string;
-// }
-
-// export interface IOnResults extends IAction {
-//   payload: any;
-// }
-
-// export interface ISetStatusAction extends IAction {
-//   payload: {
-//     index: number;
-//     status: string;
-//   };
-// }
-
-// The Type Guard Functions
-// function isOnResults(action: IAction): action is IOnResults {
-//   return action.type === "ON_CHANGE";
-// }
 
 type Action =
   | {type: "RESULTS_FETCH"}
@@ -43,13 +22,11 @@ const homeReducer = (state: IState, action: Action) => {
   switch (action.type) {
     case "RESULTS_FETCH":
       return {
-        ...state,
-        results: state.results
+        ...state
       };
     case "RESULTS_ERROR":
       return {
-        ...state,
-        results: action.payload
+        ...state
       };
     case "RESULTS_RECIEVE":
       return {

@@ -12,7 +12,7 @@ const Routes = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path={["/", "/:movieID"]} component={Home} />
         <Route component={NotFound} />
       </Switch>
     </Router>

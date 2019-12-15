@@ -1,6 +1,6 @@
 import React from "react";
 import {IMovieResponse} from "./home-reducer";
-import {SearchBar} from "./components";
+import {SearchBar, MovieDetail} from "./components";
 import {DataTable, Layout} from "shared/components";
 const styles = require("./home.module.scss");
 
@@ -66,7 +66,9 @@ const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
             <DataTable onRowClick={handleRowClick} type="auto" data={data} />
           </section>
         </div>
-        <div className="w-1/2 p-10">Hi</div>
+        <div className="w-1/2 p-10">
+          <MovieDetail />
+        </div>
       </div>
     </Layout>
   );

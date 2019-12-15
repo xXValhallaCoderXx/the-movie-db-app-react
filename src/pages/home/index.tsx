@@ -1,14 +1,16 @@
 import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
+import { useHistory } from "react-router-dom";
 import {homeReducer, IState, IMovieResponse} from "./home-reducer";
 import HomeView from "./view";
 
-interface IProps {
+interface ILocalProps {
   children: ReactNode;
 }
 
+type IProps = ILocalProps;
+
 const initialState: IState = {
-  results: "",
   movies: {
     page: 0,
     totalPages: 0,
@@ -18,9 +20,10 @@ const initialState: IState = {
   movieDetails: {}
 };
 
-const HomePageContainer = ({children}: IProps) => {
+const HomePageContainer = (props: IProps) => {
+  const history = useHistory();
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
-  const movieApiCall = (name: string) =>
+  const movieApiCall = (name: string) => {
     Fetch.searchMovie(name)
       .then((res: IMovieResponse) => {
         dispatch({type: "RESULTS_RECIEVE", payload: res});
@@ -28,6 +31,7 @@ const HomePageContainer = ({children}: IProps) => {
       .catch(err => {
         dispatch({type: "RESULTS_ERROR", payload: err});
       });
+  };
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);
@@ -40,13 +44,15 @@ const HomePageContainer = ({children}: IProps) => {
       Fetch.getMovie(id)
         .then((res: any) => {
           dispatch({type: "MOVIE_RECIEVE", payload: res});
+          history.push(`/${id}`)
         })
         .catch(err => {
           dispatch({type: "MOVIE_ERROR", payload: err});
         });
+    }else {
+      history.push(`/${id}`)
     }
   };
-  console.log("STATE:", state);
   return (
     <HomeView
       results={state.movies}
