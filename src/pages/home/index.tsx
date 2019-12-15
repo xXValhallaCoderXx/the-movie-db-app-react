@@ -5,7 +5,7 @@ import {Layout} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
-import {homeReducer, IState, IMovieResponse} from "./home-reducer";
+import {homeReducer, IState} from "./home-reducer";
 
 interface ILocalProps {
   children: ReactNode;
@@ -18,13 +18,7 @@ interface IRouteParams {
 type IProps = ILocalProps;
 
 const initialState: IState = {
-  movies: {
-    loading: false,
-    page: 0,
-    totalPages: 0,
-    totalResults: 0,
-    results: []
-  },
+  movies: [],
   movieDetails: {},
   selectedMovie: ""
 };
@@ -44,15 +38,41 @@ const HomePageContainer = (props: IProps) => {
     }
   }, [point]);
 
-  const movieApiCall = (name: string) => {
-    Fetch.searchMovie(name)
-      .then((res: IMovieResponse) => {
-        dispatch({type: "RESULTS_RECIEVE", payload: res});
-      })
-      .catch(err => {
-        dispatch({type: "RESULTS_ERROR", payload: err});
-      });
+  const recursiveFetch = (release?: any, parentDir?: string) => {
+    let totalPages: any;
+    const movies: any = [];
+    Fetch.searchMovie(release).then(res => {
+      totalPages = res.total_pages;
+      let pageNum = 1;
+      loadMore();
+
+      function loadMore() {
+        Fetch.searchMovie(release, pageNum)
+          .then((nestedRes: any) => {
+            movies.push(nestedRes.results);
+            if (nestedRes.page < totalPages) {
+              loadMore();
+            } else {
+              if (nestedRes.total_results === 0) {
+                recursiveFetch(parentDir, "");
+              } else {
+                dispatch({
+                  type: "RESULTS_RECIEVE",
+                  payload: movies.flat()
+                });
+              }
+            }
+          })
+          .catch(err => {
+            console.log("ERRROR: ", err);
+          });
+        pageNum++;
+      }
+    });
   };
+
+  const movieApiCall = (name: string) => recursiveFetch(name);
+
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);

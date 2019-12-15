@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const MovieDetail = ({selectedMovie}: IProps) => {
-  console.log("DETAIL: ", selectedMovie);
   if (!selectedMovie) {
     return <div>Select a movie</div>;
   }

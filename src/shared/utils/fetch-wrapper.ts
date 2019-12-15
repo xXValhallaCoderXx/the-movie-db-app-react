@@ -16,9 +16,9 @@ const httpStatus: any = (response: Response) => {
 const parseJson = (res: Response) => res.json();
 
 const FetchWrapper = {
-  searchMovie: (name: string) => {
+  searchMovie: (name: string, page?: number) => {
     const {API_KEY} = process.env;
-    const url = `https://api.themoviedb.org/3/search/movie?query=${name}&api_key=${API_KEY}`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${name}&page=${page}&api_key=${API_KEY}`;
     return fetch(url)
       .then(httpStatus)
       .then(parseJson);

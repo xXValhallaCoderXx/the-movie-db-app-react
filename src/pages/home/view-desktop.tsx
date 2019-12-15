@@ -1,5 +1,4 @@
 import React from "react";
-import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
 import MovieDetail from "./movie-detail";
 import {DataTable, Layout} from "shared/components";
@@ -10,7 +9,7 @@ interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
-  results: IMovieResponse;
+  results: any;
   selectedMovie: any;
 }
 
@@ -21,11 +20,11 @@ const HomePageView = (props: IProps) => {
   }
 
   function renderDataTable() {
-    if (results.results.length > 0) {
-      const parsedMovieData = parseMovieData(results.results);
+    if (results.length > 0) {
+      const parsedMovieData = parseMovieData(results);
       return (
         <DataTable
-          loading={results.loading}
+          loading={false}
           onRowClick={handleRowClick}
           type="auto"
           data={parsedMovieData}
