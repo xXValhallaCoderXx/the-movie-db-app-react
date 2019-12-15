@@ -1,36 +1,80 @@
 import React, {ReactNode} from "react";
-import {Fetch} from "shared/utils";
-const styles = require("./home.module.scss");
+import {debounce, Fetch} from "shared/utils";
+import {useHistory, useParams} from "react-router-dom";
+import {homeReducer, IState, IMovieResponse} from "./home-reducer";
+import HomeView from "./view";
 
-interface IProps {
+interface ILocalProps {
   children: ReactNode;
 }
 
-const HomePageContainer = ({children}: IProps) => {
-  const [showMessage, setShowMessage] = React.useState(false);
+interface IRouteParams {
+  movieID: string;
+}
+
+type IProps = ILocalProps;
+
+const initialState: IState = {
+  movies: {
+    loading: false,
+    page: 0,
+    totalPages: 0,
+    totalResults: 0,
+    results: []
+  },
+  movieDetails: {},
+  selectedMovie: ""
+};
+
+const HomePageContainer = (props: IProps) => {
+  const params = useParams<IRouteParams>();
+  const history = useHistory();
+  const [state, dispatch] = React.useReducer(homeReducer, initialState);
+  const movieApiCall = (name: string) => {
+    Fetch.searchMovie(name)
+      .then((res: IMovieResponse) => {
+        dispatch({type: "RESULTS_RECIEVE", payload: res});
+      })
+      .catch(err => {
+        dispatch({type: "RESULTS_ERROR", payload: err});
+      });
+  };
+  const debounceOnChange = debounce((name: string) => {
+    movieApiCall(name);
+  }, 500);
+  function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
+  }
+
+  const getMovieByID = (id: string) => {
+    if (!state.movieDetails[id]) {
+      Fetch.getMovie(id)
+        .then((res: any) => {
+          dispatch({type: "MOVIE_RECIEVE", payload: res});
+          history.push(`/${id}`);
+        })
+        .catch(err => {
+          dispatch({type: "MOVIE_ERROR", payload: err});
+        });
+    } else {
+      history.push(`/${id}`);
+    }
+  };
+  const handleSelectedMovie = () => {
+    if (state.movieDetails[params.movieID]) {
+      return state.movieDetails[params.movieID];
+    } else {
+      return null;
+    }
+  };
   return (
-    <div className="bg-white mx-auto max-w-sm shadow-lg rounded-lg overflow-hidden">
-      <div className="sm:flex sm:items-center px-6 py-4">
-        <img
-          className="block h-16 sm:h-24 rounded-full mx-auto mb-4 sm:mb-0 sm:mr-4 sm:ml-0"
-          src="https://avatars2.githubusercontent.com/u/4323180?s=400&u=4962a4441fae9fba5f0f86456c6c506a21ffca4f&v=4"
-          alt=""
-        />
-        <div className="text-center sm:text-left sm:flex-grow">
-          <div className="mb-4">
-            <p className="text-xl leading-tight">Adam Wathan</p>
-            <p className="text-sm leading-tight text-grey-dark">
-              Developer at NothingWorks Inc.
-            </p>
-          </div>
-          <div>
-            <button className="text-xs font-semibold rounded-full px-4 py-1 leading-normal bg-white border border-purple text-purple hover:bg-purple hover:text-white">
-              Message
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <HomeView
+      selectedMovie={handleSelectedMovie()}
+      results={state.movies}
+      onSubmit={onSubmit}
+      onChange={debounceOnChange}
+      onRowClick={getMovieByID}
+    />
   );
 };
 

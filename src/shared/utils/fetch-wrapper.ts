@@ -22,6 +22,13 @@ const FetchWrapper = {
     return fetch(url)
       .then(httpStatus)
       .then(parseJson);
+  },
+  getMovie: (id: string) => {
+    const {API_KEY} = process.env;
+    const url = `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`;
+    return fetch(url)
+      .then(httpStatus)
+      .then(parseJson);
   }
 };
 
