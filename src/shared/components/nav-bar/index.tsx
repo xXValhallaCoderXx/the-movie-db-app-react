@@ -9,7 +9,7 @@ interface IRouteParams {
   movieID: string;
 }
 
-const NavBar = ({mobile}) => {
+const NavBar = ({mobile}: IProps) => {
   const history = useHistory();
   const params = useParams<IRouteParams>();
   return (
