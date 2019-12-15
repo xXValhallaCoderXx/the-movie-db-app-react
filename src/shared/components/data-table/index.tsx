@@ -20,7 +20,7 @@ interface IProps {
 }
 
 function greyRow(index: number) {
-  let greyRowClass = "";
+  const greyRowClass = "";
   // if (index % 2 === 0) {
   //   greyRowClass = "bg-gray-100";
   // }
