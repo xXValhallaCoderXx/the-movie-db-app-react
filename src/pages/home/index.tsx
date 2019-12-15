@@ -53,7 +53,7 @@ const HomePageContainer = (props: IProps) => {
           dispatch({type: "MOVIE_RECIEVE", payload: res});
           history.push(`/${id}`);
         })
-        .catch(err => {
+        .catch((err: any) => {
           dispatch({type: "MOVIE_ERROR", payload: err});
         });
     } else {

@@ -23,7 +23,7 @@ const FetchWrapper = {
       .then(httpStatus)
       .then(parseJson);
   },
-  getMovie: (id: string) => {
+  getMovie: (id: string): Promise<any> => {
     const {API_KEY} = process.env;
     const url = `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`;
     return fetch(url)

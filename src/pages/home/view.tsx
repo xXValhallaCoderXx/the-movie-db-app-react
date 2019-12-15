@@ -3,6 +3,7 @@ import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
 import MovieDetail from "./movie-detail";
 import {DataTable, Layout} from "shared/components";
+import {useBreakpoints} from "shared/hooks";
 import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
@@ -15,7 +16,9 @@ interface IProps {
 }
 
 const HomePageView = (props: IProps) => {
+  const point = useBreakpoints();
   const {onSubmit, onChange, results, onRowClick, selectedMovie} = props;
+  console.log("POINT: ", point);
   function handleRowClick(row: any) {
     onRowClick(row.id);
   }
