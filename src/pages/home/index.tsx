@@ -1,5 +1,8 @@
 import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
+import {useBreakpoints} from "shared/hooks";
+import MobileView from "./view-mobile";
+import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
 import {homeReducer, IState, IMovieResponse} from "./home-reducer";
 import HomeView from "./view";
@@ -27,9 +30,11 @@ const initialState: IState = {
 };
 
 const HomePageContainer = (props: IProps) => {
+  const point = useBreakpoints();
   const params = useParams<IRouteParams>();
   const history = useHistory();
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
+
   const movieApiCall = (name: string) => {
     Fetch.searchMovie(name)
       .then((res: IMovieResponse) => {
@@ -67,15 +72,30 @@ const HomePageContainer = (props: IProps) => {
       return null;
     }
   };
-  return (
-    <HomeView
-      selectedMovie={handleSelectedMovie()}
-      results={state.movies}
-      onSubmit={onSubmit}
-      onChange={debounceOnChange}
-      onRowClick={getMovieByID}
-    />
-  );
+  function renderView() {
+    if (point === "xs" || point === "sm" || point === "md") {
+      return (
+        <MobileView
+          selectedMovie={handleSelectedMovie()}
+          results={state.movies}
+          onSubmit={onSubmit}
+          onChange={debounceOnChange}
+          onRowClick={getMovieByID}
+        />
+      );
+    } else {
+      return (
+        <DesktopView
+          selectedMovie={handleSelectedMovie()}
+          results={state.movies}
+          onSubmit={onSubmit}
+          onChange={debounceOnChange}
+          onRowClick={getMovieByID}
+        />
+      );
+    }
+  }
+  return renderView();
 };
 
 export default HomePageContainer;

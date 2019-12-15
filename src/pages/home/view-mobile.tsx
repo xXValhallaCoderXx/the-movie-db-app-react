@@ -1,9 +1,8 @@
 import React from "react";
+import {Layout, DataTable} from "shared/components";
+import {parseMovieData} from "shared/utils";
 import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
-import MovieDetail from "./movie-detail";
-import {DataTable, Layout} from "shared/components";
-import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
 interface IProps {
@@ -14,8 +13,9 @@ interface IProps {
   selectedMovie: any;
 }
 
-const HomePageView = (props: IProps) => {
-  const {onSubmit, onChange, results, onRowClick, selectedMovie} = props;
+const MobileView = (props: IProps) => {
+  const {onChange, results, onRowClick} = props;
+
   function handleRowClick(row: any) {
     onRowClick(row.id);
   }
@@ -36,24 +36,19 @@ const HomePageView = (props: IProps) => {
   }
   return (
     <Layout>
-      <div className="flex h-full">
-        <div className={`w-2/6 p-10 ${styles.search_container}`}>
+      <div className="flex justify-center h-full">
+        <div className="w-3/5 mt-10">
           <div className="flex items-center">
-            <div className="mr-5 text-xl">Search</div>
-            <form onSubmit={onSubmit} className="flex-grow">
-              <SearchBar onSearchChange={onChange} />
-            </form>
+ 
+            <SearchBar onSearchChange={onChange} />
           </div>
           <section id="table-wrapper" className="mt-10 text-sm">
             {renderDataTable()}
           </section>
-        </div>
-        <div className="w-4/6 p-10">
-          <MovieDetail selectedMovie={selectedMovie} />
         </div>
       </div>
     </Layout>
   );
 };
 
-export default HomePageView;
+export default MobileView;
