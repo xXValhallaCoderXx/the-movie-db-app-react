@@ -28,6 +28,7 @@ const HomePageContainer = (props: IProps) => {
   const params = useParams<IRouteParams>();
   const history = useHistory();
   const [view, setView] = React.useState("desktop");
+  const [loading, setLoading] = React.useState(false);
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
 
   React.useEffect(() => {
@@ -41,34 +42,47 @@ const HomePageContainer = (props: IProps) => {
   const recursiveFetch = (release?: any, parentDir?: string) => {
     let totalPages: any;
     const movies: any = [];
-    Fetch.searchMovie(release).then(res => {
-      totalPages = res.total_pages;
-      let pageNum = 1;
-      loadMore();
-
-      function loadMore() {
-        Fetch.searchMovie(release, pageNum)
-          .then((nestedRes: any) => {
-            movies.push(nestedRes.results);
-            if (nestedRes.page < totalPages) {
-              loadMore();
-            } else {
-              if (nestedRes.total_results === 0) {
-                recursiveFetch(parentDir, "");
-              } else {
-                dispatch({
-                  type: "RESULTS_RECIEVE",
-                  payload: movies.flat()
-                });
-              }
-            }
-          })
-          .catch(err => {
-            console.log("ERRROR: ", err);
-          });
-        pageNum++;
-      }
+    setLoading(true);
+    dispatch({
+      type: "RESULTS_RECIEVE",
+      payload: []
     });
+    Fetch.searchMovie(release)
+      .then(res => {
+        totalPages = res.total_pages;
+        let pageNum = 1;
+        loadMore();
+
+        function loadMore() {
+          Fetch.searchMovie(release, pageNum)
+            .then((nestedRes: any) => {
+              movies.push(nestedRes.results);
+              // Temp Hack as doing client side pagination
+              if (nestedRes.page < totalPages && nestedRes.page < 4) {
+                loadMore();
+              } else {
+                if (nestedRes.total_results === 0) {
+                  recursiveFetch(parentDir, "");
+                } else {
+                  setLoading(false);
+                  dispatch({
+                    type: "RESULTS_RECIEVE",
+                    payload: movies.flat()
+                  });
+                }
+              }
+            })
+            .catch(err => {
+              setLoading(false);
+              console.log("ERRROR: ", err);
+            });
+          pageNum++;
+        }
+      })
+      .catch(err => {
+        setLoading(false);
+        console.log("ERROR", err);
+      });
   };
 
   const movieApiCall = (name: string) => recursiveFetch(name);
@@ -106,6 +120,7 @@ const HomePageContainer = (props: IProps) => {
       return (
         <MobileView
           selectedMovie={handleSelectedMovie()}
+          loading={loading}
           results={state.movies}
           onSubmit={onSubmit}
           onChange={debounceOnChange}
@@ -116,6 +131,7 @@ const HomePageContainer = (props: IProps) => {
       return (
         <DesktopView
           selectedMovie={handleSelectedMovie()}
+          loading={loading}
           results={state.movies}
           onSubmit={onSubmit}
           onChange={debounceOnChange}
@@ -124,6 +140,7 @@ const HomePageContainer = (props: IProps) => {
       );
     }
   }
+  console.log("LOADING: ", loading);
   return <Layout mobile={view === "mobile"}>{renderView()}</Layout>;
 };
 

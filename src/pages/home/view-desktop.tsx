@@ -1,7 +1,7 @@
 import React from "react";
 import {SearchBar} from "./components";
 import MovieDetail from "./movie-detail";
-import {DataTable, Layout} from "shared/components";
+import {DataTable, Loader} from "shared/components";
 import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
@@ -9,6 +9,7 @@ interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
+  loading: boolean;
   results: any;
   selectedMovie: any;
 }
@@ -30,6 +31,12 @@ const HomePageView = (props: IProps) => {
           data={parsedMovieData}
         />
       );
+    } else if (props.loading) {
+      return (
+        <div>
+          <Loader />
+        </div>
+      );
     }
     return null;
   }
@@ -37,7 +44,6 @@ const HomePageView = (props: IProps) => {
     <div className="flex h-full">
       <div className={`w-2/6 p-10 ${styles.search_container}`}>
         <div className="flex items-center">
-          <div className="mr-5 text-xl">Search</div>
           <form onSubmit={onSubmit} className="flex-grow">
             <SearchBar onSearchChange={onChange} />
           </form>

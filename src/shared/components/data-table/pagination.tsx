@@ -9,7 +9,11 @@ const Pagination = ({pages, goTo}: IProps) => {
   return (
     <div>
       {pages.map((p: any, i: any) => (
-        <button key={i} onClick={goTo} value={i}>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-1"
+          key={i}
+          onClick={goTo}
+          value={i}>
           {i + 1}
         </button>
       ))}

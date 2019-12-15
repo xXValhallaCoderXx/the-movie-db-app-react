@@ -14,6 +14,7 @@ interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
+  loading: boolean;
   results: any;
   selectedMovie: any;
 }
@@ -27,7 +28,7 @@ const MobileView = (props: IProps) => {
   }
 
   function renderDataTable() {
-    if (results.results.length > 0) {
+    if (results.length > 0) {
       const parsedMovieData = parseMovieData(results);
       return (
         <DataTable
