@@ -4,6 +4,7 @@ export interface IState {
 }
 
 export interface IMovieResponse {
+  loading: boolean;
   page: number;
   results: any;
   totalPages: number;

@@ -2,6 +2,7 @@ import React from "react";
 import {IMovieResponse} from "./home-reducer";
 import {SearchBar, MovieDetail} from "./components";
 import {DataTable, Layout} from "shared/components";
+import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
 interface IProps {
@@ -49,6 +50,22 @@ const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
   function handleRowClick(row: any) {
     onRowClick("299536");
   }
+
+  function renderDataTable() {
+    if (results.results.length === 0) {
+      return <div>Enter Search</div>;
+    } else {
+      const parsedMovieData = parseMovieData(results.results);
+      return (
+        <DataTable
+          loading={results.loading}
+          onRowClick={handleRowClick}
+          type="auto"
+          data={parsedMovieData}
+        />
+      );
+    }
+  }
   return (
     <Layout>
       <h1 className="text-center text-2xl mt-5 mb-5">
@@ -63,7 +80,7 @@ const HomePageView = ({onSubmit, onChange, results, onRowClick}: IProps) => {
             </form>
           </div>
           <section id="table-wrapper" className="mt-5">
-            <DataTable onRowClick={handleRowClick} type="auto" data={data} />
+            {renderDataTable()}
           </section>
         </div>
         <div className="w-1/2 p-10">

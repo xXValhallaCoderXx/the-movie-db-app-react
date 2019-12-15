@@ -16,6 +16,7 @@ interface IProps {
   data: any;
   headers?: string[];
   onRowClick?: (data: any) => void;
+  loading: boolean;
 }
 
 function greyRow(index: number) {

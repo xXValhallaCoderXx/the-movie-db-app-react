@@ -12,6 +12,7 @@ type IProps = ILocalProps;
 
 const initialState: IState = {
   movies: {
+    loading: false,
     page: 0,
     totalPages: 0,
     totalResults: 0,
