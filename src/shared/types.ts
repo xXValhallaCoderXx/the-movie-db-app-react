@@ -10,6 +10,7 @@ export interface IMovieDetail {
   status: string;
   tagline: string;
   title: string;
+  poster_path: string;
 }
 
 export interface IGenres {

@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-
+import {NavBar} from "shared/components";
 interface IProps {
   children: ReactNode;
 }
@@ -7,8 +7,8 @@ interface IProps {
 const DefaultLayout = (props: IProps) => {
   const {children} = props;
   return (
-    <div>
-      <div style={{height: 60}} />
+    <div className="h-screen">
+      <NavBar />
       {children}
     </div>
   );

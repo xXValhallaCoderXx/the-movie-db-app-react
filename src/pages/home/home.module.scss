@@ -1,5 +1,9 @@
 @import "shared/styles/_media_mixins.scss";
 
+.search_container {
+  border-right: 2px solid black;
+}
+
 .home_view_wrapper {
   display: flex;
   @include breakpoint(xs) {

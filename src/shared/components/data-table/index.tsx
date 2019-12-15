@@ -21,9 +21,9 @@ interface IProps {
 
 function greyRow(index: number) {
   let greyRowClass = "";
-  if (index % 2 === 0) {
-    greyRowClass = "bg-gray-100";
-  }
+  // if (index % 2 === 0) {
+  //   greyRowClass = "bg-gray-100";
+  // }
   return greyRowClass;
 }
 
