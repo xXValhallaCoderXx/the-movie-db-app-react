@@ -1,6 +1,7 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import {Layout, DataTable} from "shared/components";
+import MovieDetail from "./movie-detail";
 import {parseMovieData} from "shared/utils";
 import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
@@ -20,7 +21,7 @@ interface IProps {
 
 const MobileView = (props: IProps) => {
   const params = useParams<IRouteParams>();
-  const {onChange, results, onRowClick} = props;
+  const {onChange, results, onRowClick, selectedMovie} = props;
 
   function handleRowClick(row: any) {
     onRowClick(row.id);
@@ -42,7 +43,11 @@ const MobileView = (props: IProps) => {
   }
   function renderView() {
     if (params.movieID) {
-      return <div>Details</div>;
+      return (
+        <div className="p-10">
+          <MovieDetail selectedMovie={selectedMovie} />;
+        </div>
+      );
     } else {
       return (
         <div className="flex justify-center h-full">
