@@ -1,9 +1,8 @@
 import React from "react";
 import {useParams} from "react-router-dom";
-import {Layout, DataTable} from "shared/components";
+import {DataTable} from "shared/components";
 import MovieDetail from "./movie-detail";
 import {parseMovieData} from "shared/utils";
-import {IMovieResponse} from "./home-reducer";
 import {SearchBar} from "./components";
 const styles = require("./home.module.scss");
 
@@ -15,7 +14,7 @@ interface IProps {
   onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
-  results: IMovieResponse;
+  results: any;
   selectedMovie: any;
 }
 
@@ -29,10 +28,10 @@ const MobileView = (props: IProps) => {
 
   function renderDataTable() {
     if (results.results.length > 0) {
-      const parsedMovieData = parseMovieData(results.results);
+      const parsedMovieData = parseMovieData(results);
       return (
         <DataTable
-          loading={results.loading}
+          loading={false}
           onRowClick={handleRowClick}
           type="auto"
           data={parsedMovieData}

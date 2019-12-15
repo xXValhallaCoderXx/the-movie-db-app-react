@@ -1,21 +1,13 @@
 export interface IState {
-  movies: IMovieResponse;
+  movies: any;
   movieDetails: any;
   selectedMovie: string;
-}
-
-export interface IMovieResponse {
-  loading: boolean;
-  page: number;
-  results: any;
-  totalPages: number;
-  totalResults: number;
 }
 
 type Action =
   | {type: "RESULTS_FETCH"}
   | {type: "RESULTS_ERROR"; payload: any}
-  | {type: "RESULTS_RECIEVE"; payload: IMovieResponse}
+  | {type: "RESULTS_RECIEVE"; payload: any}
   | {type: "MOVIE_FETCH"}
   | {type: "MOVIE_ERROR"; payload: any}
   | {type: "MOVIE_RECIEVE"; payload: any}

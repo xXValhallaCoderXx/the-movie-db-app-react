@@ -37,7 +37,6 @@ const HomePageContainer = (props: IProps) => {
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
 
   React.useEffect(() => {
-    recursiveFetch("matrix");
     if (point === "xs" || point === "sm" || point === "md") {
       setView("mobile");
     } else {
@@ -54,41 +53,32 @@ const HomePageContainer = (props: IProps) => {
       loadMore();
 
       function loadMore() {
-        Fetch.searchMovie(release, pageNum).then((nestedRes: any) => {
-          movies.push(nestedRes.results);
-          if (nestedRes.page < totalPages) {
-            loadMore();
-          } else {
-            if (nestedRes.total_results === 0) {
-              recursiveFetch(parentDir, "");
+        Fetch.searchMovie(release, pageNum)
+          .then((nestedRes: any) => {
+            movies.push(nestedRes.results);
+            if (nestedRes.page < totalPages) {
+              loadMore();
             } else {
-              dispatch({
-                type: "RESULTS_RECIEVE",
-                payload: {
-                  loading: false,
-                  totalResults: 52,
-                  totalPages: 3,
-                  page: 1,
-                  results: movies.flat()
-                }
-              });
+              if (nestedRes.total_results === 0) {
+                recursiveFetch(parentDir, "");
+              } else {
+                dispatch({
+                  type: "RESULTS_RECIEVE",
+                  payload: movies.flat()
+                });
+              }
             }
-          }
-        });
+          })
+          .catch(err => {
+            console.log("ERRROR: ", err);
+          });
         pageNum++;
       }
     });
   };
 
-  const movieApiCall = (name: string) => {
-    Fetch.searchMovie(name)
-      .then((res: IMovieResponse) => {
-        dispatch({type: "RESULTS_RECIEVE", payload: res});
-      })
-      .catch(err => {
-        dispatch({type: "RESULTS_ERROR", payload: err});
-      });
-  };
+  const movieApiCall = (name: string) => recursiveFetch(name);
+
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);
