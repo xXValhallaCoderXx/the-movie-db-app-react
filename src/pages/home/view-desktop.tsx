@@ -52,7 +52,7 @@ const HomePageView = (props: IProps) => {
           {renderDataTable()}
         </section>
       </div>
-      <div className="w-4/6 p-10">
+      <div className="w-4/6 p-10 bg-black text-white">
         <MovieDetail selectedMovie={selectedMovie} />
       </div>
     </div>
