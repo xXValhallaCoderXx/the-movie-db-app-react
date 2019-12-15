@@ -1,15 +1,9 @@
 import React from "react";
-import {IMovieResponse} from "pages/home/home-reducer";
 
 interface IColumn {
   id: string;
   label: string;
 }
-
-// interface IProps {
-//   results: IMovieResponse;
-//   columns: IColumn[];
-// }
 
 interface IProps {
   type?: "fixed" | "auto";

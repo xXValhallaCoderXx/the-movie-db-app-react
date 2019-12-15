@@ -63,7 +63,7 @@ const MobileView = (props: IProps) => {
       );
     }
   }
-  return <Layout>{renderView()}</Layout>;
+  return renderView();
 };
 
 export default MobileView;

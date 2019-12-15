@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import {debounce, Fetch} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
+import {Layout} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
@@ -32,7 +33,16 @@ const HomePageContainer = (props: IProps) => {
   const point = useBreakpoints();
   const params = useParams<IRouteParams>();
   const history = useHistory();
+  const [view, setView] = React.useState("desktop");
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
+
+  React.useEffect(() => {
+    if (point === "xs" || point === "sm" || point === "md") {
+      setView("mobile");
+    } else {
+      setView("desktop");
+    }
+  }, [point]);
 
   const movieApiCall = (name: string) => {
     Fetch.searchMovie(name)
@@ -72,7 +82,7 @@ const HomePageContainer = (props: IProps) => {
     }
   };
   function renderView() {
-    if (point === "xs" || point === "sm" || point === "md") {
+    if (view === "mobile") {
       return (
         <MobileView
           selectedMovie={handleSelectedMovie()}
@@ -94,7 +104,7 @@ const HomePageContainer = (props: IProps) => {
       );
     }
   }
-  return renderView();
+  return <Layout mobile={view === "mobile"}>{renderView()}</Layout>;
 };
 
 export default HomePageContainer;

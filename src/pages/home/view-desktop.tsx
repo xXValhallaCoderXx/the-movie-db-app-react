@@ -35,24 +35,22 @@ const HomePageView = (props: IProps) => {
     return null;
   }
   return (
-    <Layout>
-      <div className="flex h-full">
-        <div className={`w-2/6 p-10 ${styles.search_container}`}>
-          <div className="flex items-center">
-            <div className="mr-5 text-xl">Search</div>
-            <form onSubmit={onSubmit} className="flex-grow">
-              <SearchBar onSearchChange={onChange} />
-            </form>
-          </div>
-          <section id="table-wrapper" className="mt-10 text-sm">
-            {renderDataTable()}
-          </section>
+    <div className="flex h-full">
+      <div className={`w-2/6 p-10 ${styles.search_container}`}>
+        <div className="flex items-center">
+          <div className="mr-5 text-xl">Search</div>
+          <form onSubmit={onSubmit} className="flex-grow">
+            <SearchBar onSearchChange={onChange} />
+          </form>
         </div>
-        <div className="w-4/6 p-10">
-          <MovieDetail selectedMovie={selectedMovie} />
-        </div>
+        <section id="table-wrapper" className="mt-10 text-sm">
+          {renderDataTable()}
+        </section>
       </div>
-    </Layout>
+      <div className="w-4/6 p-10">
+        <MovieDetail selectedMovie={selectedMovie} />
+      </div>
+    </div>
   );
 };
 
