@@ -5,7 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: '#081C24'
+        'tmd-dark': '#12100E',
+        'tmd-green': '#01D277',
+        'tmd-dark-green': '#081C24',
+        'tmd-blue': '#34495E',
+        'tmd-gray': "#9AA4AA",
+        'tmd-light': '#FFFFFF',
       }
     },
     screens: {
@@ -19,6 +24,7 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
+      cheese: '#34495E',
       gray: {
         100: '#f7fafc',
         200: '#edf2f7',
