@@ -1,5 +1,5 @@
 import React from "react";
-import {IMovieDetail} from "shared/types";
+import {Badge} from "shared/components";
 
 interface IProps {
   selectedMovie: any;
@@ -9,34 +9,65 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   if (!selectedMovie) {
     return <div>Select a movie</div>;
   }
+  console.log("SELECTED MOVIE: ", selectedMovie);
   const {
-    info: {title, poster_path, overview, imdb_id}
+    info: {
+      title,
+      poster_path,
+      overview,
+      imdb_id,
+      backdrop_path,
+      tagline,
+      genres
+    }
   } = selectedMovie;
+
+  function renderGenres() {
+    return genres.map((genre: any, index: any) => {
+      return (
+        <Badge color="" key={index}>
+          {genre.name}
+        </Badge>
+      );
+    });
+  }
   return (
     <div>
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <div className="flex mt-5">
-        <div className="w-1/5">
-          <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
-          <a
-            className="no-underline hover:underline text-blue-500"
-            target="_blank"
-            href={`https://www.imdb.com/title/${imdb_id}`}>
-            Find out more
-          </a>
-        </div>
-        <div className="w-4/5 pl-5">
-          <h3 className="text-2xl font-bold -mt-2">Overview</h3>
-          <p>{overview}</p>
-          <p>
-            IMDB:{" "}
-            <a
-              className="no-underline hover:underline text-blue-500"
-              target="_blank"
-              href={`https://www.imdb.com/title/${imdb_id}`}>
-              Find out more
-            </a>
-          </p>
+      <div
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path}), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))`,
+          backgroundBlendMode: "overlay"
+        }}>
+        <h1 className="text-6xl font-bold text-center text-white pt-5">
+          {title}
+        </h1>
+        <h1 className="text-xl font-bold text-center text-white">{tagline}</h1>
+        <div className="mt-5 p-10">
+          <div className="rounded overflow-hidden shadow-lg bg-white flex p-5">
+            <div className="w-1/5">
+              <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+              <a
+                className="no-underline hover:underline text-blue-500"
+                target="_blank"
+                href={`https://www.imdb.com/title/${imdb_id}`}>
+                Find out more
+              </a>
+            </div>
+            <div className="w-4/5 pl-5">
+              {renderGenres()}
+              <h3 className="text-2xl font-bold mt-2">Overview</h3>
+              <p>{overview}</p>
+              <p>
+                IMDB:{" "}
+                <a
+                  className="no-underline hover:underline text-blue-500"
+                  target="_blank"
+                  href={`https://www.imdb.com/title/${imdb_id}`}>
+                  Find out more
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
