@@ -1,3 +1,16 @@
+export interface IGenres {
+  id: number;
+  name: string;
+}
+
+// New
+export interface ISelectedMovie {
+  info: IMovieDetail;
+  cast: ICast[];
+  reviews: IReviews[];
+  similar: ISimilar[];
+}
+
 export interface IMovieDetail {
   budget: number;
   genres: IGenres[];
@@ -11,9 +24,23 @@ export interface IMovieDetail {
   tagline: string;
   title: string;
   poster_path: string;
+  backdrop_path: string;
+}
+export interface ICast {
+  cast_id: number;
+  character: string;
+  name: string;
+  profile_path: string;
 }
 
-export interface IGenres {
+export interface ISimilar {
   id: number;
-  name: string;
+  title: string;
+  poster_path: string;
+}
+
+export interface IReviews {
+  author: string;
+  content: string;
+  url: string;
 }

@@ -8,7 +8,7 @@ interface IProps {
 const DefaultLayout = (props: IProps) => {
   const {children, mobile} = props;
   return (
-    <div className="h-screen">
+    <div className="">
       {/* <NavBar mobile={mobile} /> */}
       {children}
     </div>
