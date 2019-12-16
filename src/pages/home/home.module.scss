@@ -2,6 +2,9 @@
 
 .search_container {
   border-right: 2px solid black;
+  @include breakpoint(md) {
+    min-width: 400px;
+  }
 }
 
 .home_view_wrapper {
