@@ -157,7 +157,7 @@ exports.developmentCSS = () => ({
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [require("tailwindcss"), require("autoprefixer")]
+              plugins: [require("tailwindcss")(PATHS.tailwind), require("autoprefixer")]
             }
           }
         ]
@@ -191,9 +191,9 @@ exports.extractCSS = () => {
       new MiniCssExtractPlugin({
         filename: "static/styles/[name].[hash:8].css"
       }),
-      new PurgecssPlugin({
-        paths: glob.sync(`${PATHS.app}/*`, {nodir: true})
-      })
+      // new PurgecssPlugin({
+      //   paths: glob.sync(`${PATHS.app}/*`, {nodir: true})
+      // })
     ],
     module: {
       rules: [
@@ -219,7 +219,7 @@ exports.extractCSS = () => {
               loader: "postcss-loader",
               options: {
                 ident: "postcss",
-                plugins: [require("tailwindcss"), require("autoprefixer")]
+                plugins: [require("tailwindcss")(PATHS.tailwind), require("autoprefixer")]
               }
             }
           ]
