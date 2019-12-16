@@ -1,36 +1,22 @@
-import React, {ReactNode} from "react";
-import {debounce, Fetch, parseMovieDetailData} from "shared/utils";
+import React from "react";
+import {debounce, Fetch} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
 import {Layout} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
-import {useHistory, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {homeReducer, IState} from "./home-reducer";
-import FetchWrapper from "shared/utils/fetch-wrapper";
-
-interface ILocalProps {
-  children: ReactNode;
-}
-
-interface IRouteParams {
-  movieID: string;
-}
-
-type IProps = ILocalProps;
 
 const initialState: IState = {
-  movies: [],
-  movieDetails: {},
-  selectedMovie: ""
+  movies: []
 };
 
-const HomePageContainer = (props: IProps) => {
+const HomePageContainer = () => {
   const point = useBreakpoints();
-  const params = useParams<IRouteParams>();
   const history = useHistory();
   const [view, setView] = React.useState("desktop");
   const [loading, setLoading] = React.useState(false);
-  const [movieDataLoading, setMovieDataLoading] = React.useState(false);
+
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
 
   React.useEffect(() => {
@@ -92,43 +78,15 @@ const HomePageContainer = (props: IProps) => {
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);
-  function onSubmit(event: React.FormEvent) {
-    event.preventDefault();
-  }
 
-  const getMovieByID = (id: string) => {
-    // setMovieDataLoading(true)
-    if (!state.movieDetails[id]) {
-      FetchWrapper.fetchMovieMeta(id)
-        .then(res => {
-          const results = parseMovieDetailData(res);
-          dispatch({type: "MOVIE_RECIEVE", payload: results});
-          // setMovieDataLoading(false)
-          history.push(`/${id}`);
-        })
-        .catch(err => {
-          console.log("Error: ", err);
-          // setMovieDataLoading(false)
-        });
-    } else {
-      history.push(`/${id}`);
-    }
-  };
-  const handleSelectedMovie = () => {
-    if (state.movieDetails[params.movieID]) {
-      return state.movieDetails[params.movieID];
-    } else {
-      return null;
-    }
-  };
+  const getMovieByID = (id: string) => history.push(`/movies/${id}`);
+
   function renderView() {
     if (view === "mobile") {
       return (
         <MobileView
-          selectedMovie={handleSelectedMovie()}
           loading={loading}
           results={state.movies}
-          onSubmit={onSubmit}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />
@@ -136,10 +94,8 @@ const HomePageContainer = (props: IProps) => {
     } else {
       return (
         <DesktopView
-          selectedMovie={handleSelectedMovie()}
           loading={loading}
           results={state.movies}
-          onSubmit={onSubmit}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />

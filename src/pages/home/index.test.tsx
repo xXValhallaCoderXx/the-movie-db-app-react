@@ -1,14 +1,20 @@
 import "@testing-library/jest-dom/extend-expect";
 import React from "react";
 import {render, fireEvent} from "@testing-library/react";
-import HomeContainer from "./index";
+import {StaticRouter} from "react-router";
+import MainView from "./view-desktop";
 
-test("Render children if checked", () => {
-  const message = "This is some text";
+test("Search result empty on load", () => {
+  const mockOnRowClick = jest.fn(x => null);
+  const mockOnChange = jest.fn(x => null);
   const {queryByText, getByLabelText, getByText, getByTestId} = render(
-    <HomeContainer>{message}</HomeContainer>
+    <StaticRouter>
+      <MainView
+        results={[]}
+        onRowClick={mockOnRowClick}
+        loading={false}
+        onChange={mockOnChange}
+      />
+    </StaticRouter>
   );
-  expect(queryByText(message)).toBeNull();
-  fireEvent.click(getByTestId("test-checkbox"));
-  expect(getByText(message)).toBeInTheDocument();
 });
