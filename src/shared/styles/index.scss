@@ -4,9 +4,6 @@
 
 @tailwind utilities;
 
-body {
-  height: 100%;
-}
-#render-app {
-  height: 100%
+html, body, #render-app, #render-app>div {
+  min-height: 100vh;
 }

@@ -22,7 +22,11 @@ const NavBar = ({mobile}: IProps) => {
         <span className="font-semibold text-xl tracking-tight">
           The Movie DB Application
         </span>
+      
       </div>
+      <div className="text-center">
+          Hello
+        </div>
       {mobile && params.movieID ? <Link to="/">Back</Link> : null}
     </nav>
   );
