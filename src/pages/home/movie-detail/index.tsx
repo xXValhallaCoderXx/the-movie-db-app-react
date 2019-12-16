@@ -1,9 +1,10 @@
 import React from "react";
-import FetchWrapper from "shared/utils/fetch-wrapper";
+import { Fetch} from "shared/utils";
 import {parseMovieDetailData, isEmpty} from "shared/utils";
 import {useParams, useLocation} from "react-router-dom";
 import {ISelectedMovie} from "shared/types";
 import View from "./view";
+import PopularMoviesView from "./view-popular";
 
 interface IRouteParams {
   movieID: string;
@@ -11,8 +12,13 @@ interface IRouteParams {
 
 const MovieDetail = () => {
   const [selectedMovie, setSelectedMovie] = React.useState({});
+  const [popular, setPopular] = React.useState([]);
   const params = useParams<IRouteParams>();
   const {pathname} = useLocation();
+
+  React.useEffect(() => {
+    Fetch.latestMovies().then(res => setPopular(res.results));
+  }, [])
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,7 +26,7 @@ const MovieDetail = () => {
 
   React.useEffect(() => {
     if (!isEmpty(params)) {
-      FetchWrapper.fetchMovieMeta(params.movieID)
+      Fetch.fetchMovieMeta(params.movieID)
         .then(res => {
           const results: ISelectedMovie = parseMovieDetailData(res);
           setSelectedMovie(results);
@@ -31,7 +37,7 @@ const MovieDetail = () => {
     }
   }, [params.movieID]);
   if (isEmpty(selectedMovie)) {
-    return null;
+    return <PopularMoviesView movies={popular}/>;
   }
   return <View selectedMovie={selectedMovie} />;
 };

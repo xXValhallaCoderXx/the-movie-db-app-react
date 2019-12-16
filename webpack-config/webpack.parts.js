@@ -157,7 +157,7 @@ exports.developmentCSS = () => ({
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [require("tailwindcss"), require("autoprefixer")]
+              plugins: [require("tailwindcss")(PATHS.tailwind), require("autoprefixer")]
             }
           }
         ]

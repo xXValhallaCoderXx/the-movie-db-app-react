@@ -40,7 +40,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   }
   console.log("BACK: ", cast);
   return (
-    <div>
+    <div >
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path}), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))`,

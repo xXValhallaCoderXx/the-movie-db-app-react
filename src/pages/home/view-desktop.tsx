@@ -40,12 +40,12 @@ const HomePageView = (props: IProps) => {
     return null;
   }
   return (
-    <div className="flex h-full bg-black justify-center p-10">
+    <div className="flex bg-tmd-dark-green justify-center p-20 pt-32">
       <div
-        className="flex rounded overflow-hidden shadow-lg bg-white w-screen"
+        className="flex rounded shadow-lg bg-white w-screen"
         style={{maxWidth: 1300}}>
         <div
-          className={`md:w-32/6 lg:w-2/6 p-10 bg-gray-800 ${
+          className={`md:w-32/6 lg:w-2/6 p-10 bg-tmd-blue ${
             styles.search_container
           }`}>
           <SearchBar onSearchChange={onChange} />

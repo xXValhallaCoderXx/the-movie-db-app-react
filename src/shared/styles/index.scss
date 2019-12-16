@@ -3,7 +3,3 @@
 @tailwind components;
 
 @tailwind utilities;
-
-html, body, #render-app, #render-app>div {
-  min-height: 100vh;
-}

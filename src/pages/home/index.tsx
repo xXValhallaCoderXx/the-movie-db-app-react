@@ -16,6 +16,7 @@ const HomePageContainer = () => {
   const history = useHistory();
   const [view, setView] = React.useState("desktop");
   const [loading, setLoading] = React.useState(false);
+
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
 
   React.useEffect(() => {
