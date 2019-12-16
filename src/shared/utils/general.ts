@@ -32,3 +32,17 @@ export const isEmpty = (obj: object) => {
   }
   return true;
 };
+
+export const truncate = (str: string, length: number, ending: any) => {
+  if (length == null) {
+    length = 200;
+  }
+  if (ending == null) {
+    ending = "...";
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+};

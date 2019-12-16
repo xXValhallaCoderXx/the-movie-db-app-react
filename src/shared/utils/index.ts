@@ -1,5 +1,5 @@
 export {default as Fetch} from "./fetch-wrapper";
-export {debounce, isEmpty, throttle} from "./general";
+export {debounce, isEmpty, throttle, truncate} from "./general";
 export {
   parseMovieData,
   parseMoviePages,

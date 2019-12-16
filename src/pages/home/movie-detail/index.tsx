@@ -1,7 +1,7 @@
 import React from "react";
 import FetchWrapper from "shared/utils/fetch-wrapper";
-import {parseMovieDetailData} from "shared/utils";
-import {useParams, useHistory} from "react-router-dom";
+import {parseMovieDetailData, isEmpty} from "shared/utils";
+import {useParams, useLocation} from "react-router-dom";
 import {ISelectedMovie} from "shared/types";
 import View from "./view";
 
@@ -12,20 +12,27 @@ interface IRouteParams {
 const MovieDetail = () => {
   const [selectedMovie, setSelectedMovie] = React.useState({});
   const params = useParams<IRouteParams>();
-  const history = useHistory();
-  React.useEffect(() => {
-    FetchWrapper.fetchMovieMeta(params.movieID)
-      .then(res => {
-        const results: ISelectedMovie = parseMovieDetailData(res);
-        setSelectedMovie(results);
-        history.push(`/${params.movieID}`);
-      })
-      .catch(err => {
-        console.log("Error: ", err);
-        // setMovieDataLoading(false)
-      });
-  }, [params.movieID]);
+  const {pathname} = useLocation();
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  React.useEffect(() => {
+    if (!isEmpty(params)) {
+      FetchWrapper.fetchMovieMeta(params.movieID)
+        .then(res => {
+          const results: ISelectedMovie = parseMovieDetailData(res);
+          setSelectedMovie(results);
+        })
+        .catch(err => {
+          console.log("Error: ", err);
+        });
+    }
+  }, [params.movieID]);
+  if (isEmpty(selectedMovie)) {
+    return null;
+  }
   return <View selectedMovie={selectedMovie} />;
 };
 

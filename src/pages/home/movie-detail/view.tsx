@@ -7,12 +7,12 @@ import Reviews from "./reviews";
 import Similar from "./similar";
 
 interface IProps {
-  selectedMovie: ISelectedMovie;
+  selectedMovie: any;
 }
 
 const MovieDetail = ({selectedMovie}: IProps) => {
   if (isEmpty(selectedMovie)) {
-    return <div>Select a movie</div>;
+    return null
   }
   const {
     similar,
@@ -38,6 +38,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
       );
     });
   }
+  console.log("BACK: ", cast)
   return (
     <div>
       <div
@@ -87,7 +88,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
           Reviews
         </h1>
-        <Reviews reviews={reviews.slice(0, 3)} />
+        <Reviews reviews={reviews.slice(0, 2)} />
       </section>
       <section id="similar" className="p-10">
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
