@@ -1,17 +1,12 @@
 export interface IState {
   movies: any;
   movieDetails: any;
-  selectedMovie: string;
 }
 
 type Action =
   | {type: "RESULTS_FETCH"}
   | {type: "RESULTS_ERROR"; payload: any}
-  | {type: "RESULTS_RECIEVE"; payload: any}
-  | {type: "MOVIE_FETCH"}
-  | {type: "MOVIE_ERROR"; payload: any}
-  | {type: "MOVIE_RECIEVE"; payload: any}
-  | {type: "SELECT_MOVIE"; payload: string};
+  | {type: "RESULTS_RECIEVE"; payload: any};
 
 const homeReducer = (state: IState, action: Action) => {
   switch (action.type) {
@@ -27,22 +22,6 @@ const homeReducer = (state: IState, action: Action) => {
       return {
         ...state,
         movies: action.payload
-      };
-    case "MOVIE_FETCH":
-      return {
-        ...state
-      };
-    case "MOVIE_ERROR":
-      return {
-        ...state
-      };
-    case "MOVIE_RECIEVE":
-      return {
-        ...state,
-        movieDetails: {
-          ...state.movieDetails,
-          [action.payload.info.id]: action.payload
-        }
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import {DataTable} from "shared/components";
 import MovieDetail from "./movie-detail";
 import {parseMovieData} from "shared/utils";
 import {SearchBar} from "./components";
-const styles = require("./home.module.scss");
 
 interface IRouteParams {
   movieID: string;
@@ -16,12 +15,11 @@ interface IProps {
   onRowClick: (id: string) => void;
   loading: boolean;
   results: any;
-  selectedMovie: any;
 }
 
 const MobileView = (props: IProps) => {
   const params = useParams<IRouteParams>();
-  const {onChange, results, onRowClick, selectedMovie} = props;
+  const {onChange, results, onRowClick} = props;
 
   function handleRowClick(row: any) {
     onRowClick(row.id);
@@ -45,7 +43,7 @@ const MobileView = (props: IProps) => {
     if (params.movieID) {
       return (
         <div className="p-10">
-          <MovieDetail selectedMovie={selectedMovie} />;
+          <MovieDetail />;
         </div>
       );
     } else {

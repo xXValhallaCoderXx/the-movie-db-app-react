@@ -11,11 +11,10 @@ interface IProps {
   onRowClick: (id: string) => void;
   loading: boolean;
   results: any;
-  selectedMovie: any;
 }
 
 const HomePageView = (props: IProps) => {
-  const {onSubmit, onChange, results, onRowClick, selectedMovie} = props;
+  const {onSubmit, onChange, results, onRowClick} = props;
   function handleRowClick(row: any) {
     onRowClick(row.id);
   }
@@ -55,7 +54,7 @@ const HomePageView = (props: IProps) => {
           </section>
         </div>
         <div>
-          <MovieDetail selectedMovie={selectedMovie} />
+          <MovieDetail />
         </div>
       </div>
     </div>
