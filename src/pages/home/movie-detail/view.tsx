@@ -111,6 +111,6 @@ MovieDetail.defaultProps = {
   selectedMovie: {
     info: {}
   }
-}
+};
 
 export default MovieDetail;
