@@ -10,7 +10,6 @@ interface IRouteParams {
 }
 
 interface IProps {
-  onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
   loading: boolean;

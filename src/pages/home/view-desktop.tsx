@@ -6,7 +6,6 @@ import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
 interface IProps {
-  onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
   loading: boolean;

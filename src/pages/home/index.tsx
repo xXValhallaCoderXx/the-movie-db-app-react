@@ -78,9 +78,6 @@ const HomePageContainer = () => {
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);
-  function onSubmit(event: React.FormEvent) {
-    event.preventDefault();
-  }
 
   const getMovieByID = (id: string) => history.push(`/movies/${id}`);
 
@@ -90,7 +87,6 @@ const HomePageContainer = () => {
         <MobileView
           loading={loading}
           results={state.movies}
-          onSubmit={onSubmit}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />
@@ -100,7 +96,6 @@ const HomePageContainer = () => {
         <DesktopView
           loading={loading}
           results={state.movies}
-          onSubmit={onSubmit}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />

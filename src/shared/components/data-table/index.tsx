@@ -27,6 +27,7 @@ const DataTable = (props: IProps) => {
   const params = useParams<IRouteParams>();
   const [page, setPage] = React.useState(0);
   const [paginatedResults, setPaginatedResults] = React.useState([[]]);
+  console.log("PAGE: ", paginatedResults)
   React.useEffect(() => {
     setPaginatedResults(parseMoviePages(props.data));
   }, []);
