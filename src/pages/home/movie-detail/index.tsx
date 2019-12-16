@@ -41,7 +41,8 @@ const MovieDetail = () => {
   if (isEmpty(selectedMovie)) {
     return <PopularMoviesView movies={popular} />;
   }
-  // @ts-ignore
+  // @ts-ignorey
+  
   return <View selectedMovie={selectedMovie} />;
 };
 
