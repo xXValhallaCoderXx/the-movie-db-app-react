@@ -2,14 +2,16 @@ import React from "react";
 import {IMovieDetail} from "shared/types";
 
 interface IProps {
-  selectedMovie: IMovieDetail;
+  selectedMovie: any;
 }
 
 const MovieDetail = ({selectedMovie}: IProps) => {
   if (!selectedMovie) {
     return <div>Select a movie</div>;
   }
-  const {title, poster_path, overview, imdb_id} = selectedMovie;
+  const {
+    info: {title, poster_path, overview, imdb_id}
+  } = selectedMovie;
   return (
     <div>
       <h1 className="text-4xl font-bold">{title}</h1>

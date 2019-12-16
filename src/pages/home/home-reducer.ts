@@ -41,7 +41,7 @@ const homeReducer = (state: IState, action: Action) => {
         ...state,
         movieDetails: {
           ...state.movieDetails,
-          [action.payload.id]: action.payload
+          [action.payload.info.id]: action.payload
         }
       };
     default:

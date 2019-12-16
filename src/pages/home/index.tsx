@@ -1,11 +1,12 @@
 import React, {ReactNode} from "react";
-import {debounce, Fetch} from "shared/utils";
+import {debounce, Fetch, parseMovieDetailData} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
 import {Layout} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
 import {homeReducer, IState} from "./home-reducer";
+import FetchWrapper from "shared/utils/fetch-wrapper";
 
 interface ILocalProps {
   children: ReactNode;
@@ -29,6 +30,7 @@ const HomePageContainer = (props: IProps) => {
   const history = useHistory();
   const [view, setView] = React.useState("desktop");
   const [loading, setLoading] = React.useState(false);
+  const [movieDataLoading, setMovieDataLoading] = React.useState(false);
   const [state, dispatch] = React.useReducer(homeReducer, initialState);
 
   React.useEffect(() => {
@@ -95,14 +97,18 @@ const HomePageContainer = (props: IProps) => {
   }
 
   const getMovieByID = (id: string) => {
+    // setMovieDataLoading(true)
     if (!state.movieDetails[id]) {
-      Fetch.getMovie(id)
-        .then((res: any) => {
-          dispatch({type: "MOVIE_RECIEVE", payload: res});
+      FetchWrapper.fetchMovieMeta(id)
+        .then(res => {
+          const results = parseMovieDetailData(res);
+          dispatch({type: "MOVIE_RECIEVE", payload: results});
+          // setMovieDataLoading(false)
           history.push(`/${id}`);
         })
-        .catch((err: any) => {
-          dispatch({type: "MOVIE_ERROR", payload: err});
+        .catch(err => {
+          console.log("Error: ", err);
+          // setMovieDataLoading(false)
         });
     } else {
       history.push(`/${id}`);
@@ -140,7 +146,6 @@ const HomePageContainer = (props: IProps) => {
       );
     }
   }
-  console.log("LOADING: ", loading);
   return <Layout mobile={view === "mobile"}>{renderView()}</Layout>;
 };
 
