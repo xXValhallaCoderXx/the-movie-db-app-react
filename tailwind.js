@@ -3,6 +3,11 @@ module.exports = {
   important: false,
   separator: ':',
   theme: {
+    extend: {
+      colors: {
+        dark: '#081C24'
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -14,7 +19,6 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
-
       gray: {
         100: '#f7fafc',
         200: '#edf2f7',
@@ -324,6 +328,7 @@ module.exports = {
       '4xl': '56rem',
       '5xl': '64rem',
       '6xl': '72rem',
+      '7xl': '80rem',
       full: '100%',
     },
     minHeight: {
