@@ -3,7 +3,6 @@ export interface IGenres {
   name: string;
 }
 
-// New
 export interface ISelectedMovie {
   info: IMovieDetail;
   cast: ICast[];

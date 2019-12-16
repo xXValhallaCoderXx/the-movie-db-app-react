@@ -6,16 +6,14 @@ import {parseMovieData} from "shared/utils";
 const styles = require("./home.module.scss");
 
 interface IProps {
-  onSubmit: (event: React.FormEvent) => void;
   onChange: (event: React.FormEvent) => void;
   onRowClick: (id: string) => void;
   loading: boolean;
   results: any;
-  selectedMovie: any;
 }
 
 const HomePageView = (props: IProps) => {
-  const {onSubmit, onChange, results, onRowClick, selectedMovie} = props;
+  const {onChange, results, onRowClick} = props;
   function handleRowClick(row: any) {
     onRowClick(row.id);
   }
@@ -41,12 +39,14 @@ const HomePageView = (props: IProps) => {
     return null;
   }
   return (
-    <div className="flex h-full bg-black justify-center p-10">
+    <div
+      className="flex bg-tmd-dark-green justify-center p-20 pt-32"
+      style={{height: "100%"}}>
       <div
-        className="flex rounded overflow-hidden shadow-lg bg-white w-screen"
+        className="flex rounded shadow-lg bg-white w-screen"
         style={{maxWidth: 1300}}>
         <div
-          className={`md:w-32/6 lg:w-2/6 p-10 bg-gray-800 ${
+          className={`md:w-32/6 lg:w-2/6 p-10 bg-tmd-blue ${
             styles.search_container
           }`}>
           <SearchBar onSearchChange={onChange} />
@@ -55,7 +55,7 @@ const HomePageView = (props: IProps) => {
           </section>
         </div>
         <div>
-          <MovieDetail selectedMovie={selectedMovie} />
+          <MovieDetail />
         </div>
       </div>
     </div>

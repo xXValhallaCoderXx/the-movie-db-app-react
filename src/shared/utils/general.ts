@@ -13,14 +13,11 @@ export const debounce = (fn: any, time: number) => {
 export const throttle = (callback: any, limit: any) => {
   let wait = false;
   return () => {
-    // We return a throttled function
     if (!wait) {
-      // If we're not waiting
-      callback.call(); // Execute users function
-      wait = true; // Prevent future invocations
+      callback.call();
+      wait = true;
       setTimeout(() => {
-        // After a period of time
-        wait = false; // And allow future invocations
+        wait = false;
       }, limit);
     }
   };
@@ -31,4 +28,18 @@ export const isEmpty = (obj: object) => {
     if (obj.hasOwnProperty(key)) return false;
   }
   return true;
+};
+
+export const truncate = (str: string, length: number, ending: any) => {
+  if (!length) {
+    length = 200;
+  }
+  if (ending == null) {
+    ending = "...";
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {MovieCard} from "shared/components";
 import {ISimilar} from "shared/types";
 
 interface IProps {
@@ -13,9 +13,11 @@ const Similar = ({similar}: IProps) => {
   function renderSimilar() {
     return similar.map((item, index) => {
       return (
-        <Link key={index} to={`/${item.id}`}>
-          <img src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} />
-        </Link>
+        <div
+          key={index}
+          className="w-full xl:w-1/3 mt-5 xl:mt-0 flex justify-center">
+          <MovieCard id={item.id} poster_path={item.poster_path} />
+        </div>
       );
     });
   }
