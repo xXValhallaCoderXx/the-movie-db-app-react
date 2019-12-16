@@ -6,8 +6,7 @@ interface IProps {
 
 const PopularMovies = ({movies}: IProps) => {
   function renderMovies() {
-    const popular10 = movies.splice(0, 9);
-    return popular10.map((movie: any, index: number) => {
+    return movies.map((movie: any, index: number) => {
       return (
         <div key={index} className="p-5">
           <MovieCard id={movie.id} poster_path={movie.poster_path} />

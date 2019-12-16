@@ -58,11 +58,31 @@
       "manifest": 1,
       "vendors~app": 2
     },
-    "bySource": {},
+    "bySource": {
+      "0 node_modules/babel-loader/lib/index.js??ref--4!src/pages/home/index.tsx ./view-mobile": 3
+    },
     "usedIds": [
       0,
       1,
-      2
+      2,
+      3
     ]
-  }
+  },
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--7-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/src/index.js??ref--7-3!src/shared/components/loader/styles.module.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ]
 }

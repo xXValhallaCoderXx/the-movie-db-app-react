@@ -12,7 +12,6 @@ const parseJson = (res: Response) => res.json();
 const {API_KEY} = process.env;
 const FetchWrapper = {
   latestMovies: () => {
-  
     const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
     return fetch(url)
       .then(httpStatus)

@@ -82,7 +82,7 @@ const HomePageContainer = () => {
     event.preventDefault();
   }
 
-  const getMovieByID = (id: string) => history.push(`/${id}`);
+  const getMovieByID = (id: string) => history.push(`/movies/${id}`);
 
   function renderView() {
     if (view === "mobile") {

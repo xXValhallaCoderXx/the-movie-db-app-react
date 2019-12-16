@@ -7,7 +7,7 @@ import Reviews from "./reviews";
 import Similar from "./similar";
 
 interface IProps {
-  selectedMovie: any;
+  selectedMovie: ISelectedMovie;
 }
 
 const MovieDetail = ({selectedMovie}: IProps) => {
@@ -32,20 +32,27 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   function renderGenres() {
     return genres.map((genre: any, index: any) => {
       return (
-        <Badge color="" key={index}>
+        <Badge className="mt-2 xl:mt-0" color="" key={index}>
           {genre.name}
         </Badge>
       );
     });
   }
-  console.log("BACK: ", cast);
+  function handleBackground() {
+    if (backdrop_path) {
+      return {
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path}), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))`,
+        backgroundBlendMode: "overlay"
+      };
+    } else {
+      return {
+        backgroundColor: "black"
+      };
+    }
+  }
   return (
-    <div >
-      <div
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path}), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))`,
-          backgroundBlendMode: "overlay"
-        }}>
+    <div>
+      <div style={handleBackground()}>
         <h1 className="text-6xl font-bold text-center text-white pt-5">
           {title}
         </h1>
@@ -99,5 +106,11 @@ const MovieDetail = ({selectedMovie}: IProps) => {
     </div>
   );
 };
+
+MovieDetail.defaultProps = {
+  selectedMovie: {
+    info: {}
+  }
+}
 
 export default MovieDetail;

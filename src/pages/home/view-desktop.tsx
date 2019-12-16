@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const HomePageView = (props: IProps) => {
-  const {onSubmit, onChange, results, onRowClick} = props;
+  const {onChange, results, onRowClick} = props;
   function handleRowClick(row: any) {
     onRowClick(row.id);
   }
@@ -40,7 +40,7 @@ const HomePageView = (props: IProps) => {
     return null;
   }
   return (
-    <div className="flex bg-tmd-dark-green justify-center p-20 pt-32">
+    <div className="flex bg-tmd-dark-green justify-center p-20 pt-32" style={{height: "100%"}}>
       <div
         className="flex rounded shadow-lg bg-white w-screen"
         style={{maxWidth: 1300}}>
