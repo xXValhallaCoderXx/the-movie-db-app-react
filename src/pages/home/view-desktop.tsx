@@ -39,7 +39,9 @@ const HomePageView = (props: IProps) => {
     return null;
   }
   return (
-    <div className="flex bg-tmd-dark-green justify-center p-20 pt-32" style={{height: "100%"}}>
+    <div
+      className="flex bg-tmd-dark-green justify-center p-20 pt-32"
+      style={{height: "100%"}}>
       <div
         className="flex rounded shadow-lg bg-white w-screen"
         style={{maxWidth: 1300}}>

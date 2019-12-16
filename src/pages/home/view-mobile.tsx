@@ -25,8 +25,8 @@ const MobileView = (props: IProps) => {
   }
 
   function renderDataTable() {
-    if(props.loading){
-      return <Loader/>
+    if (props.loading) {
+      return <Loader />;
     }
     if (results.length > 0) {
       const parsedMovieData = parseMovieData(results);
