@@ -6,6 +6,7 @@ import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, useParams} from "react-router-dom";
 import {homeReducer, IState} from "./home-reducer";
+import FetchWrapper from "shared/utils/fetch-wrapper";
 
 interface ILocalProps {
   children: ReactNode;
@@ -96,14 +97,17 @@ const HomePageContainer = (props: IProps) => {
 
   const getMovieByID = (id: string) => {
     if (!state.movieDetails[id]) {
-      Fetch.getMovie(id)
-        .then((res: any) => {
-          dispatch({type: "MOVIE_RECIEVE", payload: res});
-          history.push(`/${id}`);
-        })
-        .catch((err: any) => {
-          dispatch({type: "MOVIE_ERROR", payload: err});
-        });
+      FetchWrapper.fetchMovieMeta(id).then(res => {
+        console.log("RESULT : ", res);
+      })
+      // Fetch.getMovie(id)
+      //   .then((res: any) => {
+      //     dispatch({type: "MOVIE_RECIEVE", payload: res});
+      //     history.push(`/${id}`);
+      //   })
+      //   .catch((err: any) => {
+      //     dispatch({type: "MOVIE_ERROR", payload: err});
+      //   });
     } else {
       history.push(`/${id}`);
     }
