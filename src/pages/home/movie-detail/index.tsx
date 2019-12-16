@@ -13,8 +13,8 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   if (!selectedMovie) {
     return <div>Select a movie</div>;
   }
-  console.log("SELECTED MOVIE: ", selectedMovie);
   const {
+    similar,
     reviews,
     cast,
     info: {
@@ -88,11 +88,11 @@ const MovieDetail = ({selectedMovie}: IProps) => {
         </h1>
         <Reviews reviews={reviews.slice(0,3)} />
       </section>
-      <section id="similar">
+      <section id="similar" className="p-10">
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
           Other Similar Choices
         </h1>
-        <Similar similar={[]} />
+        <Similar similar={similar.slice(0,3)} />
       </section>
     </div>
   );
