@@ -1,6 +1,5 @@
 export interface IState {
   movies: any;
-  movieDetails: any;
 }
 
 type Action =

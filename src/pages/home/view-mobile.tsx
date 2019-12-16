@@ -42,7 +42,7 @@ const MobileView = (props: IProps) => {
   function renderView() {
     if (params.movieID) {
       return (
-        <div className="p-10">
+        <div >
           <MovieDetail />;
         </div>
       );

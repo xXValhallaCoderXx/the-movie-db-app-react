@@ -9,7 +9,7 @@ const DefaultLayout = (props: IProps) => {
   const {children, mobile} = props;
   return (
     <div className="">
-      {/* <NavBar mobile={mobile} /> */}
+      <NavBar mobile={mobile} />
       {children}
     </div>
   );

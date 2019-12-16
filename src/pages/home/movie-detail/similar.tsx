@@ -13,7 +13,7 @@ const Similar = ({similar}: IProps) => {
   function renderSimilar() {
     return similar.map((item, index) => {
       return (
-        <Link key={index} to={`/${item.id}`}>
+        <Link className="mt-6 md:mt-0" key={index} to={`/${item.id}`}>
           <img src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} />
         </Link>
       );

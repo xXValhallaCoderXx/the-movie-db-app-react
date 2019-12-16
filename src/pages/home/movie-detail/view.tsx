@@ -12,7 +12,7 @@ interface IProps {
 
 const MovieDetail = ({selectedMovie}: IProps) => {
   if (isEmpty(selectedMovie)) {
-    return null
+    return null;
   }
   const {
     similar,
@@ -38,7 +38,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
       );
     });
   }
-  console.log("BACK: ", cast)
+  console.log("BACK: ", cast);
   return (
     <div>
       <div

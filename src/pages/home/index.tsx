@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import {debounce, Fetch} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
 import {Layout} from "shared/components";
@@ -7,22 +7,11 @@ import DesktopView from "./view-desktop";
 import {useHistory} from "react-router-dom";
 import {homeReducer, IState} from "./home-reducer";
 
-interface ILocalProps {
-  children: ReactNode;
-}
-
-interface IRouteParams {
-  movieID: string;
-}
-
-type IProps = ILocalProps;
-
 const initialState: IState = {
-  movies: [],
-  movieDetails: {}
+  movies: []
 };
 
-const HomePageContainer = (props: IProps) => {
+const HomePageContainer = () => {
   const point = useBreakpoints();
   const history = useHistory();
   const [view, setView] = React.useState("desktop");
