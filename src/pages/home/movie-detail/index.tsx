@@ -15,6 +15,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   }
   console.log("SELECTED MOVIE: ", selectedMovie);
   const {
+    reviews,
     cast,
     info: {
       title,
@@ -79,11 +80,13 @@ const MovieDetail = ({selectedMovie}: IProps) => {
         <h1 className="text-black text-center mt-4 font-bold text-4xl">Cast</h1>
         <Cast cast={cast.slice(0, 4)} />
       </section>
-      <section id="reviews">
+      <section
+        id="reviews"
+        className="rounded overflow-hidden shadow-lg bg-gray-400 flex p-5 flex-col m-10">
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
           Reviews
         </h1>
-        <Reviews reviews={[]} />
+        <Reviews reviews={reviews.slice(0,3)} />
       </section>
       <section id="similar">
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
