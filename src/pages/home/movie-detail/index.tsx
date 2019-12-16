@@ -86,13 +86,13 @@ const MovieDetail = ({selectedMovie}: IProps) => {
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
           Reviews
         </h1>
-        <Reviews reviews={reviews.slice(0,3)} />
+        <Reviews reviews={reviews.slice(0, 3)} />
       </section>
       <section id="similar" className="p-10">
         <h1 className="text-black text-center mt-3 font-bold text-3xl">
           Other Similar Choices
         </h1>
-        <Similar similar={similar.slice(0,3)} />
+        <Similar similar={similar.slice(0, 3)} />
       </section>
     </div>
   );
