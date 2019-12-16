@@ -1,8 +1,12 @@
 import React from "react";
 import {Badge} from "shared/components";
+import {ISelectedMovie} from "shared/types";
+import Cast from "./cast";
+import Reviews from "./reviews";
+import Similar from "./similar";
 
 interface IProps {
-  selectedMovie: any;
+  selectedMovie: ISelectedMovie;
 }
 
 const MovieDetail = ({selectedMovie}: IProps) => {
@@ -11,6 +15,7 @@ const MovieDetail = ({selectedMovie}: IProps) => {
   }
   console.log("SELECTED MOVIE: ", selectedMovie);
   const {
+    cast,
     info: {
       title,
       poster_path,
@@ -70,6 +75,22 @@ const MovieDetail = ({selectedMovie}: IProps) => {
           </div>
         </div>
       </div>
+      <section id="cast">
+        <h1 className="text-black text-center mt-4 font-bold text-4xl">Cast</h1>
+        <Cast cast={cast.slice(0, 4)} />
+      </section>
+      <section id="reviews">
+        <h1 className="text-black text-center mt-3 font-bold text-3xl">
+          Reviews
+        </h1>
+        <Reviews reviews={[]} />
+      </section>
+      <section id="similar">
+        <h1 className="text-black text-center mt-3 font-bold text-3xl">
+          Other Similar Choices
+        </h1>
+        <Similar similar={[]} />
+      </section>
     </div>
   );
 };
