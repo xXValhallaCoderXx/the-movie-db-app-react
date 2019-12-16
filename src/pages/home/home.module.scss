@@ -1,0 +1,47 @@
+@import "shared/styles/_media_mixins.scss";
+
+.search_container {
+  border-right: 2px solid black;
+  @include breakpoint(md) {
+    min-width: 400px;
+  }
+}
+
+.home_view_wrapper {
+  display: flex;
+  @include breakpoint(xs) {
+    padding-top: 10px;
+  }
+  @include breakpoint(sm) {
+    padding-top: 100px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+/* Search Section Styles */
+.search_wrapper {
+  background-color: blue;
+  height: 100px;
+}
+
+
+.detail_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  height: 100%;
+}

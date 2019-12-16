@@ -1,0 +1,8 @@
+{
+  "production": {
+    "API_KEY": "1f4b653c77653b672a601004bfe67922"
+  },
+  "development": {
+    "API_KEY": "1f4b653c77653b672a601004bfe67922"
+  }
+}
