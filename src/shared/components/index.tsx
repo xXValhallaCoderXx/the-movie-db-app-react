@@ -5,3 +5,4 @@ export {default as Loader} from "./loader";
 export {default as NavBar} from "./nav-bar";
 export {default as Badge} from "./badge";
 export {default as MovieCard} from "./movie-card";
+export {default as Alert} from "./alert";

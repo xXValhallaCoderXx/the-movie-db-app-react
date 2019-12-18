@@ -1,5 +1,5 @@
 import React from "react";
-import {parseMovieDetailData, isEmpty, Fetch} from "shared/utils";
+import {parseMovieDetailData, isEmpty, Api} from "shared/utils";
 import {useParams, useLocation} from "react-router-dom";
 import {ISelectedMovie} from "shared/types";
 import View from "./view";
@@ -16,7 +16,7 @@ const MovieDetail = () => {
 
   React.useEffect(() => {
     if (!params.movieID) {
-      Fetch.latestMovies().then(res => setPopular(res.results.splice(0, 9)));
+      Api.latestMovies().then(res => setPopular(res.results.splice(0, 9)));
     }
   }, [params.movieID]);
 
@@ -26,7 +26,7 @@ const MovieDetail = () => {
 
   React.useEffect(() => {
     if (!isEmpty(params)) {
-      Fetch.fetchMovieMeta(params.movieID)
+      Api.fetchMovieMeta(params.movieID)
         .then(res => {
           const results: ISelectedMovie = parseMovieDetailData(res);
           setSelectedMovie(results);

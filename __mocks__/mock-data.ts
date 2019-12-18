@@ -1,4 +1,59 @@
-import {ISelectedMovie} from "../src/shared/types";
+import {ISelectedMovie, IMovieDetail} from "../src/shared/types";
+
+export const searchMovieResponse: IMovieDetail[] = [
+  {
+    id: "1",
+    backdrop_path: "/img.jpg",
+    budget: 2000,
+    homepage: "www.marvel.com",
+    overview: "This is the overview",
+    imdb_id: "1234",
+    poster_path: "/img.jpg",
+    revenue: 2000000,
+    release_date: "",
+    runtime: 143,
+    status: "released",
+    tagline: "To infinity and beyond",
+    title: "Avengers",
+    genres: [
+      {
+        id: 28,
+        name: "Action"
+      }
+    ]
+  }
+];
+
+export const mockPaginationData = (data): IMovieDetail[] => {
+  const mockData: IMovieDetail[] = [];
+  for (let i = 0; i < 61; i++) {
+    mockData.push(data);
+  }
+  return mockData;
+};
+
+export const invalidSearchResponse: any[] = [
+  {
+    id: "1",
+    backdrop_path: "/img.jpg",
+    budget: 2000,
+    homepage: "www.marvel.com",
+    overview: "This is the overview",
+    imdb_id: "1234",
+    poster_path: "/img.jpg",
+    revenue: 2000000,
+    release_date: "",
+    runtime: 143,
+    status: "released",
+    tagline: "To infinity and beyond",
+    genres: [
+      {
+        id: 28,
+        name: "Action"
+      }
+    ]
+  }
+];
 
 export const searchResults = [
   {
@@ -17,6 +72,7 @@ export const selectedMovie: ISelectedMovie = {
     }
   ],
   info: {
+    id: "1",
     backdrop_path: "/img.jpg",
     budget: 2000,
     homepage: "www.marvel.com",
