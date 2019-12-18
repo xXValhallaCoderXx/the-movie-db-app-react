@@ -1,8 +1,8 @@
 import React from "react";
-import {debounce, Api} from "shared/utils";
+import {debounce, Api, parseMovieData} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
 import {ISearchResponse} from "shared/types";
-import {Layout} from "shared/components";
+import {Layout, Loader} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, RouteComponentProps} from "react-router-dom";
@@ -74,30 +74,39 @@ const HomePageContainer = (props: RouteComponentProps<{movieID: string}>) => {
       });
   };
 
-  const getMovieByID = (id: string) => history.push(`/movies/${id}`);
+  const getMovieByID = (data: any) => history.push(`/movies/${data.id}`);
   const movieApiCall = (name: string) => recursiveFetch(name);
   const debounceOnChange = debounce((name: string) => {
     movieApiCall(name);
   }, 500);
 
-  const {device, loading} = state;
-  return (
-    <Layout movieID={movieID} mobile={device === "mobile"}>
-      {device === "mobile" ? (
+  function renderView() {
+    if (device === "mobile") {
+      return (
         <MobileView
           loading={loading}
-          results={state.movies}
+          results={results}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />
-      ) : (
+      );
+    } else {
+      return (
         <DesktopView
           loading={loading}
-          results={state.movies}
+          results={results}
           onChange={debounceOnChange}
           onRowClick={getMovieByID}
         />
-      )}
+      );
+    }
+  }
+
+  const {device, loading} = state;
+  const results = parseMovieData(state.movies);
+  return (
+    <Layout movieID={movieID} mobile={device === "mobile"}>
+      {loading ? <Loader /> : renderView()}
     </Layout>
   );
 };

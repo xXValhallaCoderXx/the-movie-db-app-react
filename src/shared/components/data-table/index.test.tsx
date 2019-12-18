@@ -18,13 +18,13 @@ describe("Data Table Component", () => {
   const onClick = jest.fn();
   it("should render correctly", () => {
     const component = shallow(
-      <DataTable cols={cols} data={data} onClick={onClick} />
+      <DataTable loading={false} cols={cols} data={data} onClick={onClick} />
     );
     expect(component).toMatchSnapshot();
   });
   it("should render rows correctly with data", () => {
     const component = shallow(
-      <DataTable cols={cols} data={data} onClick={onClick} />
+      <DataTable loading={false} cols={cols} data={data} onClick={onClick} />
     );
     // const firstTableRow = component.at(1).find('table').find('tbody').find('tr').first();
 

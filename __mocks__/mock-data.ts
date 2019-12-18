@@ -1,4 +1,13 @@
-import {ISelectedMovie, IMovieDetail} from "../src/shared/types";
+import {ISelectedMovie, IMovieDetail, ICast} from "../src/shared/types";
+
+export const castData: ICast[] = [
+  {
+    cast_id: 1,
+    character: "Pikachu",
+    name: "Pikachuuuuu",
+    profile_path: "/img.jpg"
+  }
+];
 
 export const searchMovieResponse: IMovieDetail[] = [
   {

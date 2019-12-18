@@ -11,7 +11,7 @@ const DefaultLayout = (props: IProps) => {
   return (
     <div>
       <NavBar movieID={movieID} mobile={mobile} />
-      <div className="h-auto">{children}</div>
+      <div className="min-h-screen">{children}</div>
     </div>
   );
 };

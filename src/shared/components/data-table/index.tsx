@@ -16,24 +16,28 @@ const DataTableContainer = (props: IProps) => {
 
   React.useEffect(() => {
     setPaginatedResults(parseMoviePages(props.data));
-  }, []);
+  }, [props.data]);
 
   const handleRowClick = (data: any) => () => {
+    console.log("DATA: ", data);
     props.onRowClick && props.onRowClick(data);
   };
 
   function goToPage(e: any) {
     setPage(e.target.value);
   }
-
+  // console.log("PAGE: ", page);
+  // console.log("DATA: ", props.data);
+  // console.log("PAGINATED: ", paginatedResults);
   return (
     <div>
       <TableView
-        cols={[{name: "id", header: "ID"}]}
+        cols={[{name: "title", header: "MOVIE TITLE"}]}
         data={paginatedResults[page]}
         onClick={handleRowClick}
+        loading={props.loading}
       />
-      <div className="mt-2">
+      <div className="mt-2 flex justify-center">
         <Pagination pages={paginatedResults} goTo={goToPage} />
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Loader} from "shared/components";
 
 interface ICol {
   header: string;
@@ -9,38 +10,45 @@ interface IProps {
   cols: ICol[];
   data: any;
   onClick: any;
+  loading: boolean;
 }
 
-const TableView = ({cols, data, onClick}: IProps) => {
-  function renderBody() {
-    if (data.length > 0) {
-      return data.map((el: string, index: number) => {
-        return (
-          <tr onClick={onClick(el)} key={Math.random()}>
-            {Object.values(el).map(value => (
-              <td
-                className={`py-4 px-6 border-b border-grey-light cursor-pointer`}
-                key={Math.random()}>
-                {value}
-              </td>
-            ))}
-          </tr>
-        );
-      });
-    } else {
-      return <td colSpan={data.length}>There is no Data</td>;
-    }
+const TableView = ({cols, data, onClick, loading}: IProps) => {
+  function emptyState() {
+    return (
+      <td
+        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        colSpan={cols.length}>
+        No Search Results
+      </td>
+    );
   }
 
-  // function renderHeaders() {
-  //   return Object.keys(data[0]).map((el: string, index: number) => (
-  //     <th
-  //       className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
-  //       key={index}>
-  //       {el.toUpperCase()}
-  //     </th>
-  //   ));
-  // }
+  function renderData() {
+    return data.map(row => (
+      <tr onClick={onClick(row)} key={row.id}>
+        {cols.map(col => (
+          <td
+            className="py-4 px-6 border-b border-grey-light cursor-pointer"
+            key={col.name}>
+            {row[col.name]}
+          </td>
+        ))}
+      </tr>
+    ));
+  }
+
+  function handleLoader() {
+    if (loading) {
+      return (
+        <div className="p-5">
+          <Loader />
+        </div>
+      );
+    } else {
+      return data && data.length > 0 ? renderData() : emptyState();
+    }
+  }
   return (
     <table className="text-sm w-full bg-white shadow-md rounded my-6">
       <thead>
@@ -54,19 +62,7 @@ const TableView = ({cols, data, onClick}: IProps) => {
           ))}
         </tr>
       </thead>
-      <tbody>
-        {data.map(row => (
-          <tr key={row.id}>
-            {cols.map(col => (
-              <td
-                className="py-4 px-6 border-b border-grey-light cursor-pointer"
-                key={col.name}>
-                {row[col.name]}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      <tbody>{handleLoader()}</tbody>
     </table>
   );
 };
