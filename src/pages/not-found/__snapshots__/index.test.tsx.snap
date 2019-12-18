@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not Found Page should render correctly 1`] = `
-<DefaultLayout>
+<DefaultLayout
+  movieID=""
+>
   <div
     className="bg-tmd-dark-green h-screen flex justify-center items-center"
   >

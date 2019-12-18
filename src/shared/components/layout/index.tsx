@@ -3,13 +3,14 @@ import {NavBar} from "shared/components";
 interface IProps {
   mobile?: boolean;
   children: ReactNode;
+  movieID: string;
 }
 
 const DefaultLayout = (props: IProps) => {
-  const {children, mobile} = props;
+  const {children, mobile, movieID} = props;
   return (
-    <div className="">
-      <NavBar mobile={mobile} />
+    <div>
+      <NavBar movieID={movieID} mobile={mobile} />
       <div className="h-auto">{children}</div>
     </div>
   );

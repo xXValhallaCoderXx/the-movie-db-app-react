@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <Layout>
+    <Layout movieID="">
       <div className="bg-tmd-dark-green h-screen flex justify-center items-center">
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-10">
           <h1 className="text-2xl text-center">
