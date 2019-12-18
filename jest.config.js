@@ -11,5 +11,6 @@ module.exports = {
     "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
     "shared/components": "<rootDir>/src/shared/components",
     "shared/utils": "<rootDir>/src/shared/utils",
+    "shared/hooks": "<rootDir>/src/shared/hooks",
   }
 };

@@ -46,9 +46,7 @@ const HomePageView = (props: IProps) => {
         className="flex rounded shadow-lg bg-white w-screen"
         style={{maxWidth: 1300}}>
         <div
-          className={`md:w-32/6 lg:w-2/6 p-10 bg-tmd-blue ${
-            styles.search_container
-          }`}>
+          className={`md:w-32/6 lg:w-2/6 p-10 bg-tmd-blue ${styles.search_container}`}>
           <SearchBar onSearchChange={onChange} />
           <section id="table-wrapper" className="mt-10 text-sm">
             {renderDataTable()}
