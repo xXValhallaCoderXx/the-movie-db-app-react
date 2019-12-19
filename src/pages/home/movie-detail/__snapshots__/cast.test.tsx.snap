@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Details - Cast should render correctly with data 1`] = `
+<div
+  className="flex flex-wrap justify-center mt-2"
+>
+  <div
+    className="flex justify-content items-center flex-col p-5"
+    id="cast-avatar"
+    key="0"
+  >
+    <img
+      className="w-24 h-24 rounded-full"
+      src="https://image.tmdb.org/t/p/w264_and_h264_bestv2/img.jpg"
+    />
+    <p
+      className="font-bold"
+      id="cast-avatar-name"
+    >
+      Pikachuuuuu
+    </p>
+    <p
+      className="italic"
+      id="cast-avatar-character"
+    >
+      Pikachu
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Movie Details - Cast should render correctly without data 1`] = `
+<div
+  className="text-center font-bold text-xl"
+  id="no-cast"
+>
+  No Cast Data
+</div>
+`;

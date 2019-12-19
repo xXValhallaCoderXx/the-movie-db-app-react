@@ -61,12 +61,6 @@ const MovieDetail = ({selectedMovie}: IProps) => {
           <div className="rounded overflow-hidden shadow-lg bg-white flex p-5">
             <div className="w-1/5">
               <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
-              <a
-                className="no-underline hover:underline text-blue-500"
-                target="_blank"
-                href={`https://www.imdb.com/title/${imdb_id}`}>
-                Find out more
-              </a>
             </div>
             <div className="w-4/5 pl-5">
               {renderGenres()}
