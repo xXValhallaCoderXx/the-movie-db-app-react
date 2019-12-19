@@ -14,12 +14,16 @@ const Reviews = ({reviews}: IProps) => {
       </div>
     );
   }
+  const onClick = review => () => {
+    window.open(review.url);
+  };
   function renderReviews() {
     return reviews.map((review, index) => {
       return (
         <div
           key={index}
-          className="mt-10 md:mt-0 w-full md:w-1/3 bg-white rounded text-center p-3 m-5">
+          onClick={onClick(review)}
+          className="mt-10 md:mt-0 w-full md:w-1/3 bg-white rounded text-center hover:shadow-xl cursor-pointer p-3 m-5">
           <p id="review-author" className="text-center font-bold mt-4">
             {review.author}
           </p>
