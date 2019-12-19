@@ -1,6 +1,6 @@
 import React from "react";
 import {Badge} from "shared/components";
-import {isEmpty} from "shared/utils";
+import {isEmpty, revenueFormat} from "shared/utils";
 import {ISelectedMovie} from "shared/types";
 import Cast from "./cast";
 import Reviews from "./reviews";
@@ -25,7 +25,11 @@ const MovieDetail = ({selectedMovie}: IProps) => {
       imdb_id,
       backdrop_path,
       tagline,
-      genres
+      genres,
+      runtime,
+      revenue,
+      release_date,
+      status
     }
   } = selectedMovie;
 
@@ -66,10 +70,25 @@ const MovieDetail = ({selectedMovie}: IProps) => {
               {renderGenres()}
               <h3 className="text-2xl font-bold mt-2">Overview</h3>
               <p>{overview}</p>
+              <h3 className="text-xl font-bold mt-5">Info</h3>
               <p>
-                IMDB:{" "}
+                <span className="font-semibold">Status:</span> {status}{" "}
+              </p>
+              <p>
+                <span className="font-semibold">Release Date:</span>{" "}
+                {release_date}{" "}
+              </p>
+              <p>
+                <span className="font-semibold">Running Time:</span> {runtime}{" "}
+                minutes
+              </p>
+              <p>
+                <span className="font-semibold">Revenue:</span>{" "}
+                {revenueFormat(revenue)}
+              </p>
+              <p className="mt-3">
                 <a
-                  className="no-underline hover:underline text-blue-500"
+                  className="no-underline hover:underline text-tmd-green font-semibold hover:font-bold"
                   target="_blank"
                   href={`https://www.imdb.com/title/${imdb_id}`}>
                   Find out more

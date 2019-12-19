@@ -1,5 +1,5 @@
 export {default as Api} from "./api-wrapper";
-export {debounce, isEmpty, throttle, truncate} from "./general";
+export {debounce, isEmpty, throttle, truncate, revenueFormat} from "./general";
 export {
   parseMovieData,
   parseMoviePages,
