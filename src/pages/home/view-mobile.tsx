@@ -29,12 +29,12 @@ const MobileView = (props: IProps) => {
       );
     } else {
       return (
-        <div className="flex justify-center h-screen overflow-hidden">
-          <div className="w-3/5 mt-16 bg-tmd-blue w-full">
-            <div className="flex items-center pt-10 p-5">
+        <div className="flex justify-center min-h-screen">
+          <div className="w-3/5 mt-16 bg-tmd-blue w-full pt-5 pb-5">
+            <div className="flex items-center pl-5 pr-5 pb-5">
               <SearchBar onSearchChange={onChange} />
             </div>
-            <section id="table-wrapper" className="mt-10 text-sm pl-5 pr-5">
+            <section id="table-wrapper" className="text-sm pl-5 pr-5">
               <DataTable
                 loading={loading}
                 onRowClick={onRowClick}
