@@ -3,8 +3,9 @@
 ## Technology Used
 - React
 - React Router Dom
-- Jest / Enzyme
-
+- Jest / Enzyme - Testing 
+- Husky: Git hooks - Pre Push(Run linter and Test runner)
+- Prettier / TS-Lint: For code formatting
 
 ## Application Structure
 - Application is split into `feature domains` 
