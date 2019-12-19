@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data Table Component should render correctly 1`] = `
+<table
+  className="text-sm w-full bg-white shadow-md rounded my-6"
+>
+  <thead>
+    <tr>
+      <th
+        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        key="id"
+      >
+        ID
+      </th>
+      <th
+        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        key="name"
+      >
+        Name
+      </th>
+      <th
+        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        key="email"
+      >
+        Email
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="5"
+    >
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="id"
+      >
+        5
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="name"
+      >
+        John
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="email"
+      >
+        john@example.com
+      </td>
+    </tr>
+    <tr
+      key="6"
+    >
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="id"
+      >
+        6
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="name"
+      >
+        Liam
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="email"
+      >
+        liam@example.com
+      </td>
+    </tr>
+    <tr
+      key="7"
+    >
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="id"
+      >
+        7
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="name"
+      >
+        Maya
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="email"
+      >
+        maya@example.com
+      </td>
+    </tr>
+    <tr
+      key="8"
+    >
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="id"
+      >
+        8
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="name"
+      >
+        Oliver
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="email"
+      >
+        oliver@example.com
+      </td>
+    </tr>
+    <tr
+      key="25"
+    >
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="id"
+      >
+        25
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="name"
+      >
+        Amelia
+      </td>
+      <td
+        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        key="email"
+      >
+        amelia@example.com
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

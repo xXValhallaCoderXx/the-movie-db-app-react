@@ -1,3 +1,10 @@
+export interface ISearchResponse {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: IMovieDetail[];
+}
+
 export interface IGenres {
   id: number;
   name: string;
@@ -11,6 +18,7 @@ export interface ISelectedMovie {
 }
 
 export interface IMovieDetail {
+  id: string;
   budget: number;
   genres: IGenres[];
   homepage: string;

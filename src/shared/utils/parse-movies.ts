@@ -1,12 +1,22 @@
-export const parseMovieData = (data: any) => {
-  const result = data.map((movie: any) => {
-    return {
-      id: movie.id,
-      title: movie.title
-      // released: movie.release_date
-    };
+import {IMovieDetail} from "shared/types";
+export const parseMovieData = (data: IMovieDetail[]) => {
+  // Parse movie data - If any are missing required fields
+  // Store into array and send an event
+  const invalidMovies: IMovieDetail[] = [];
+  const results = data.filter((movie: IMovieDetail) => {
+    if (movie.id && movie.title) {
+      return {
+        id: movie.id,
+        title: movie.title
+      };
+    } else {
+      invalidMovies.push(movie);
+    }
   });
-  return result;
+  if (invalidMovies.length > 0) {
+    // Send an event to notify issue with particular objects
+  }
+  return results;
 };
 
 export const parseMoviePages = (movies: any) => {

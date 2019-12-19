@@ -1,4 +1,4 @@
-export {default as Fetch} from "./fetch-wrapper";
+export {default as Api} from "./api-wrapper";
 export {debounce, isEmpty, throttle, truncate} from "./general";
 export {
   parseMovieData,

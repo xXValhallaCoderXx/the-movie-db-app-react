@@ -30,7 +30,7 @@ export const isEmpty = (obj: object) => {
   return true;
 };
 
-export const truncate = (str: string, length: number, ending: any) => {
+export const truncate = (str: string, length: number, ending?: any) => {
   if (!length) {
     length = 200;
   }
