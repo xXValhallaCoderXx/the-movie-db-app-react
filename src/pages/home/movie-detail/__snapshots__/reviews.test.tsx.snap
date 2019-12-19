@@ -20,6 +20,13 @@ exports[`Movie Details - Reviews should render correctly with data 1`] = `
     >
       This is the review
     </p>
+    <a
+      className="mt-2 cursor-pointer hover:underline text-wrap font-semibold hover:font-bold text-tmd-green"
+      href="www.urlreview.com"
+      target="_blank"
+    >
+      Read More
+    </a>
   </div>
 </div>
 `;
