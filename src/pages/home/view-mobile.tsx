@@ -28,7 +28,6 @@ const MobileView = (props: IProps) => {
         </div>
       );
     } else {
-      // const parsedMovieData = parseMovieData(results);
       return (
         <div className="flex justify-center h-screen overflow-hidden">
           <div className="w-3/5 mt-16 bg-tmd-blue w-full">
@@ -39,7 +38,6 @@ const MobileView = (props: IProps) => {
               <DataTable
                 loading={loading}
                 onRowClick={onRowClick}
-                type="auto"
                 data={results}
               />
             </section>

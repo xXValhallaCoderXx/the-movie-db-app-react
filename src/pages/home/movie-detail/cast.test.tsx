@@ -1,7 +1,6 @@
 import React from "react";
-import {MemoryRouter, Link} from "react-router-dom";
 import {castData} from "../../../../__mocks__/mock-data";
-import {shallow, mount} from "enzyme";
+import {shallow} from "enzyme";
 import Cast from "./cast";
 
 describe("Movie Details - Cast", () => {
@@ -12,7 +11,12 @@ describe("Movie Details - Cast", () => {
   });
   it("should render correctly with data", () => {
     const component = shallow(<Cast cast={castData} />);
-    expect(component.find("#cast-avatar-name").text()).toEqual("Pikachuuuuu");
+    expect(component.find("#cast-avatar-name").text()).toEqual(
+      castData[0].name
+    );
+    expect(component.find("#cast-avatar-character").text()).toEqual(
+      castData[0].character
+    );
     expect(component).toMatchSnapshot();
   });
 });

@@ -15,6 +15,7 @@ interface IProps {
 
 export default ({onChange, results, onRowClick, loading}: IProps) => {
   const {search_container} = styles;
+  const parsedMovieData = parseMovieData(results);
   return (
     <div
       className="flex bg-tmd-dark-green justify-center p-20 pt-32 min-h-screen"
@@ -29,8 +30,7 @@ export default ({onChange, results, onRowClick, loading}: IProps) => {
             <DataTable
               loading={loading}
               onRowClick={onRowClick}
-              type="auto"
-              data={results}
+              data={parsedMovieData}
             />
           </section>
         </div>

@@ -13,10 +13,9 @@ interface IProps {
 const DataTableContainer = (props: IProps) => {
   const [page, setPage] = React.useState(0);
   const [paginatedResults, setPaginatedResults] = React.useState([[]]);
-
   React.useEffect(() => {
     setPaginatedResults(parseMoviePages(props.data));
-  }, [props.data]);
+  }, [props.data, page]);
 
   const handleRowClick = (data: any) => () => {
     props.onRowClick && props.onRowClick(data);
@@ -40,4 +39,4 @@ const DataTableContainer = (props: IProps) => {
   );
 };
 
-export default React.memo(DataTableContainer);
+export default DataTableContainer;

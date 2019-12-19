@@ -1,4 +1,9 @@
-import {ISelectedMovie, IMovieDetail, ICast} from "../src/shared/types";
+import {
+  ISelectedMovie,
+  IMovieDetail,
+  ICast,
+  IReviews
+} from "../src/shared/types";
 
 export const castData: ICast[] = [
   {
@@ -6,6 +11,14 @@ export const castData: ICast[] = [
     character: "Pikachu",
     name: "Pikachuuuuu",
     profile_path: "/img.jpg"
+  }
+];
+
+export const reviewData: IReviews[] = [
+  {
+    author: "Ash Catchem",
+    content: "This is the review",
+    url: "www.urlreview.com"
   }
 ];
 
