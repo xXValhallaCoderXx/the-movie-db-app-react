@@ -1,13 +1,17 @@
 import React from "react";
 
-const Alert = () => {
+interface IProps {
+  onClick?: any;
+}
+
+const Alert = ({onClick}: IProps) => {
   return (
     <div
-      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute top-0 mt-10"
+      className="flex items-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute top-0 mt-10"
       role="alert">
-      <strong className="font-bold">Holy smokes!</strong>
-      <span className="block sm:inline">Something seriously bad happened.</span>
-      <span className="top-0 bottom-0 right-0 px-4 py-3">
+      <strong className="font-bold mr-2">Sorry!</strong>
+      <span>Something seriously bad happened.</span>
+      <span onClick={onClick}>
         <svg
           className="fill-current h-6 w-6 text-red-500"
           role="button"

@@ -8,7 +8,10 @@ interface IProps {
 const MovieCard = ({id, poster_path}: IProps) => {
   return (
     <Link className="mt-6 md:mt-0" to={`/movies/${id}`}>
-      <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
+      <img
+        className="rounded"
+        src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+      />
     </Link>
   );
 };

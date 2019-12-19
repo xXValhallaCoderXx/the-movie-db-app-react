@@ -19,16 +19,12 @@ const DataTableContainer = (props: IProps) => {
   }, [props.data]);
 
   const handleRowClick = (data: any) => () => {
-    console.log("DATA: ", data);
     props.onRowClick && props.onRowClick(data);
   };
 
   function goToPage(e: any) {
     setPage(e.target.value);
   }
-  // console.log("PAGE: ", page);
-  // console.log("DATA: ", props.data);
-  // console.log("PAGINATED: ", paginatedResults);
   return (
     <div>
       <TableView
@@ -44,4 +40,4 @@ const DataTableContainer = (props: IProps) => {
   );
 };
 
-export default DataTableContainer;
+export default React.memo(DataTableContainer);

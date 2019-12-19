@@ -16,11 +16,13 @@ interface IProps {
 const TableView = ({cols, data, onClick, loading}: IProps) => {
   function emptyState() {
     return (
-      <td
-        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
-        colSpan={cols.length}>
-        No Search Results
-      </td>
+      <tr>
+        <td
+          className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+          colSpan={cols.length}>
+          No Search Results
+        </td>
+      </tr>
     );
   }
 
@@ -41,9 +43,11 @@ const TableView = ({cols, data, onClick, loading}: IProps) => {
   function handleLoader() {
     if (loading) {
       return (
-        <div className="p-5">
-          <Loader />
-        </div>
+        <tr>
+          <td className="p-5">
+            <Loader />
+          </td>
+        </tr>
       );
     } else {
       return data && data.length > 0 ? renderData() : emptyState();

@@ -1,11 +1,12 @@
 import React from "react";
 import {movieDetailReducer, IState} from "./movie-detail-reducer";
 import {Loader} from "shared/components";
-import {parseMovieDetailData, isEmpty, Api} from "shared/utils";
+import {parseMovieDetailData, Api} from "shared/utils";
 import {useParams, useLocation} from "react-router-dom";
 import {ISelectedMovie} from "shared/types";
-import View from "./view";
+import MovieDetail from "./view-detail";
 import PopularMoviesView from "./view-popular";
+import InvalidView from "./view-invalid";
 
 interface IRouteParams {
   movieID: string;
@@ -15,44 +16,46 @@ const initialState: IState = {
   selected_movie: "",
   popular_movies: [],
   loading: false,
-  error: ""
+  error: "",
+  movies: {}
 };
 
-const MovieDetail = () => {
+const MovieDetailContainer = () => {
   const [state, dispatch] = React.useReducer(movieDetailReducer, initialState);
   const params = useParams<IRouteParams>();
   const {pathname} = useLocation();
 
   React.useEffect(() => {
+    // No ID in URL load Popular Movies
     if (!params.movieID) {
       dispatch({type: "POPULAR_MOVIES_FETCH"});
-      Api.latestMovies().then(res => {
-        dispatch({
-          type: "POPULAR_MOVIES_SUCCESS",
-          payload: res.results.splice(0, 9)
+      Api.latestMovies()
+        .then(res => {
+          dispatch({
+            type: "POPULAR_MOVIES_SUCCESS",
+            payload: res.results.splice(0, 9)
+          });
+        })
+        .catch(() => {
+          dispatch({type: "POPULAR_MOVIES_ERROR", payload: "Error"});
         });
-      });
+    } else {
+      // Fetch Movie URL
+      dispatch({type: "SELECT_MOVIE_FETCH"});
+      Api.fetchMovieMeta(params.movieID)
+        .then(res => {
+          const results: ISelectedMovie = parseMovieDetailData(res);
+          dispatch({type: "SELECT_MOVIE_SUCCESS", payload: results});
+        })
+        .catch(() => {
+          dispatch({type: "SELECT_MOVIE_ERROR", payload: "Error"});
+        });
     }
   }, [params.movieID]);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
-  React.useEffect(() => {
-    if (!isEmpty(params)) {
-      Api.fetchMovieMeta(params.movieID)
-        .then(res => {
-          const results: ISelectedMovie = parseMovieDetailData(res);
-          dispatch({type: "SELECT_MOVIE", payload: results});
-        })
-        .catch(() => {
-          dispatch({type: "POPULAR_MOVIES_ERROR", payload: "Error"});
-        });
-    } else {
-      dispatch({type: "SELECT_MOVIE", payload: null});
-    }
-  }, [params.movieID]);
 
   if (state.loading) {
     return (
@@ -64,8 +67,10 @@ const MovieDetail = () => {
   if (!params.movieID) {
     return <PopularMoviesView movies={state.popular_movies} />;
   }
-  // @ts-ignore
-  return <View selectedMovie={selectedMovie} />;
+  if (state.movies[params.movieID]) {
+    return <MovieDetail selectedMovie={state.movies[params.movieID]} />;
+  }
+  return <InvalidView />;
 };
 
-export default MovieDetail;
+export default MovieDetailContainer;

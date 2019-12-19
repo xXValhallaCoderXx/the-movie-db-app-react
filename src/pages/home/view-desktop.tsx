@@ -1,7 +1,7 @@
 import React from "react";
 import {SearchBar} from "./components";
 import MovieDetail from "./movie-detail";
-import {DataTable, Alert} from "shared/components";
+import {DataTable} from "shared/components";
 import {parseMovieData} from "shared/utils";
 import {IMovieDetail} from "shared/types";
 const styles = require("./home.module.scss");
@@ -36,7 +36,6 @@ export default ({onChange, results, onRowClick, loading}: IProps) => {
         </div>
         <MovieDetail />
       </div>
-      {/* <Alert /> */}
     </div>
   );
 };

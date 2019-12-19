@@ -17,7 +17,7 @@ const homeReducer = (state: IState, action: Action) => {
     case "SET_DEVICE":
       return {
         ...state,
-        device: "desktop"
+        device: action.payload
       };
     case "RESULTS_FETCH":
       return {

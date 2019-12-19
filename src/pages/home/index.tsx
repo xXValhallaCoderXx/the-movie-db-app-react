@@ -2,7 +2,7 @@ import React from "react";
 import {debounce, Api, parseMovieData} from "shared/utils";
 import {useBreakpoints} from "shared/hooks";
 import {ISearchResponse} from "shared/types";
-import {Layout, Loader} from "shared/components";
+import {Layout, Alert} from "shared/components";
 import MobileView from "./view-mobile";
 import DesktopView from "./view-desktop";
 import {useHistory, RouteComponentProps} from "react-router-dom";
@@ -42,7 +42,10 @@ const HomePageContainer = (props: RouteComponentProps<{movieID: string}>) => {
         function loadMore() {
           Api.searchMovie(release, pageNum)
             .then((nestedRes: ISearchResponse) => {
-              movies.push(nestedRes.results);
+              const parseMovie = nestedRes.results.map(movie => {
+                return {id: movie.id, title: movie.title};
+              });
+              movies.push(parseMovie);
               // Temp Hack as doing client side pagination
               if (nestedRes.page < totalPages && nestedRes.page < 4) {
                 loadMore();
@@ -101,12 +104,12 @@ const HomePageContainer = (props: RouteComponentProps<{movieID: string}>) => {
       );
     }
   }
-
   const {device, loading} = state;
   const results = parseMovieData(state.movies);
   return (
     <Layout movieID={movieID} mobile={device === "mobile"}>
-      {loading ? <Loader /> : renderView()}
+      <div className="flex justify-center">{/* <Alert /> */}</div>
+      {renderView()}
     </Layout>
   );
 };

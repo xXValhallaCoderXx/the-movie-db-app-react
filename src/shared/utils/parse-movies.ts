@@ -20,6 +20,7 @@ export const parseMovieData = (data: IMovieDetail[]) => {
 };
 
 export const parseMoviePages = (movies: any) => {
+  console.log("MOOVIES: ", movies);
   const ITEMS_PER_PAGE = 10;
   const pagedMovies: any = [];
   [...Array(Math.ceil(movies.length / ITEMS_PER_PAGE))].forEach((q, i) => {
