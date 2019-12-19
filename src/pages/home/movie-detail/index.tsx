@@ -59,7 +59,7 @@ const MovieDetailContainer = () => {
 
   if (state.loading) {
     return (
-      <div className="flex w-full justify-center items-center">
+      <div className="flex h-screen w-full justify-center items-center">
         <Loader />
       </div>
     );

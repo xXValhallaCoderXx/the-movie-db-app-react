@@ -46,7 +46,9 @@ const MovieDetail = ({selectedMovie}: IProps) => {
     if (backdrop_path) {
       return {
         backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path}), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))`,
-        backgroundBlendMode: "overlay"
+        backgroundBlendMode: "overlay",
+        backgroundSize: "cover",
+        backgroundPosition: "center center"
       };
     } else {
       return {
@@ -62,13 +64,16 @@ const MovieDetail = ({selectedMovie}: IProps) => {
         </h1>
         <h1 className="text-xl font-bold text-center text-white">{tagline}</h1>
         <div className="mt-5 p-10">
-          <div className="rounded overflow-hidden shadow-lg bg-white flex p-5">
-            <div className="w-1/5">
-              <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+          <div className="rounded overflow-hidden shadow-lg bg-white flex flex-wrap p-5">
+            <div className="w-full p-6 -pm-5 md:p-0 xl:w-1/5">
+              <img
+                className="rounded mx-auto"
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+              />
             </div>
-            <div className="w-4/5 pl-5">
+            <div className="w-full md:w-4/5 p-5">
               {renderGenres()}
-              <h3 className="text-2xl font-bold mt-2">Overview</h3>
+              <h3 className="text-2xl font-bold mt-5 md:mt-2">Overview</h3>
               <p>{overview}</p>
               <h3 className="text-xl font-bold mt-5">Info</h3>
               <p>
