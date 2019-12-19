@@ -24,8 +24,14 @@ const Reviews = ({reviews}: IProps) => {
             {review.author}
           </p>
           <p id="review-content" className="text-sm">
-            {truncate(review.content, 350, "...")}
+            {truncate(review.content, 150, "...")}
           </p>
+          <a
+            target="_blank"
+            href={review.url}
+            className="mt-2 cursor-pointer hover:underline text-wrap font-semibold hover:font-bold text-tmd-green">
+            Read More
+          </a>
         </div>
       );
     });

@@ -24,7 +24,7 @@ const NavBar = ({mobile, movieID}: IProps) => {
           </span>
         </Link>
       </div>
-      {mobile && movieID ? (
+      {movieID ? (
         <Link id="mobile-back" to="/movies">
           <div className="inline-block text-sm px-4 py-2 leading-none border rounded text-tmd-green border-tmd-green hover:border-transparent hover:text-tmd-dark hover:bg-tmd-light mt-4 lg:mt-0">
             Back
