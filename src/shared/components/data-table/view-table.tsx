@@ -31,7 +31,7 @@ const TableView = ({cols, data, onClick, loading}: IProps) => {
       <tr onClick={onClick(row)} key={row.id}>
         {cols.map(col => (
           <td
-            className="py-4 px-6 border-b border-grey-light cursor-pointer"
+            className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
             key={col.name}>
             {row[col.name]}
           </td>
@@ -59,7 +59,7 @@ const TableView = ({cols, data, onClick, loading}: IProps) => {
         <tr>
           {cols.map(col => (
             <th
-              className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+              className="py-4 px-6 bg-tmd-dark font-bold uppercase text-sm text-tmd-green border-b border-grey-light text-left"
               key={col.name}>
               {col.header}
             </th>

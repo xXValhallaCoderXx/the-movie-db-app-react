@@ -7,19 +7,19 @@ exports[`Data Table Component should render correctly 1`] = `
   <thead>
     <tr>
       <th
-        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        className="py-4 px-6 bg-tmd-dark font-bold uppercase text-sm text-tmd-green border-b border-grey-light text-left"
         key="id"
       >
         ID
       </th>
       <th
-        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        className="py-4 px-6 bg-tmd-dark font-bold uppercase text-sm text-tmd-green border-b border-grey-light text-left"
         key="name"
       >
         Name
       </th>
       <th
-        className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left"
+        className="py-4 px-6 bg-tmd-dark font-bold uppercase text-sm text-tmd-green border-b border-grey-light text-left"
         key="email"
       >
         Email
@@ -31,19 +31,19 @@ exports[`Data Table Component should render correctly 1`] = `
       key="5"
     >
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="id"
       >
         5
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="name"
       >
         John
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="email"
       >
         john@example.com
@@ -53,19 +53,19 @@ exports[`Data Table Component should render correctly 1`] = `
       key="6"
     >
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="id"
       >
         6
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="name"
       >
         Liam
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="email"
       >
         liam@example.com
@@ -75,19 +75,19 @@ exports[`Data Table Component should render correctly 1`] = `
       key="7"
     >
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="id"
       >
         7
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="name"
       >
         Maya
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="email"
       >
         maya@example.com
@@ -97,19 +97,19 @@ exports[`Data Table Component should render correctly 1`] = `
       key="8"
     >
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="id"
       >
         8
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="name"
       >
         Oliver
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="email"
       >
         oliver@example.com
@@ -119,19 +119,19 @@ exports[`Data Table Component should render correctly 1`] = `
       key="25"
     >
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="id"
       >
         25
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="name"
       >
         Amelia
       </td>
       <td
-        className="py-4 px-6 border-b border-grey-light cursor-pointer"
+        className="py-4 px-6 border-b border-grey-light cursor-pointer bg-tmd-grey"
         key="email"
       >
         amelia@example.com
